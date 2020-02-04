@@ -4,7 +4,6 @@ def evenOrOdd(a,b):
     else:
         print("The number {} is not divisible by {}".format(a,b))    
 
-
 a = int(input("Enter the dividend "))
 b = int(input("Enter the divisor "))
 evenOrOdd(a,b)
