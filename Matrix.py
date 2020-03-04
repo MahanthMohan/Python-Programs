@@ -23,7 +23,7 @@ def BasicOps(): # Basic Operations such as add, subtarct, multiply, and divide
      print(M) 
       
 def LinearAlg():
-    bcommand = input("Enter an operation - Inverse or Determinant") # Takes user input for the command
+    bcommand = input("Enter an operation - Inverse or Determinant ") # Takes user input for the command
     if(bcommand == "Inverse"): # Inverse
      M = Math.linalg.inv(M)
      print(M)
@@ -37,7 +37,7 @@ R = int(input("Enter the number of rows: "))
 C = int(input("Enter the number of columns: ")) 
   
   
-print("Enter the entries in a single line, spaced out using commas") 
+print("Enter the entries in a single line, spaced out using commas ") 
    
 # single line separated by space 
 enter_values = list(map(float, input().split(","))) # Logic - seperates the float values by taking ',' as a reference, and the map operator accepts values until all rows and columns are maxed out
