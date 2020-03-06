@@ -47,7 +47,7 @@ M = Math.matrix(enter_values).reshape(R, C)  # "Reshapes" it into a matrix
 print("This is your original Matrix")
 print(M)
 
-command = input("Do you wish to do basicops, complexops, or exit? ") # Decision to continue or to exit
+command = input("Do you wish to do basicops, complexops, or exit? ") # Continue or exit dialog
 if(command == "exit"):
     input.close()
     
