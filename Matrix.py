@@ -1,6 +1,5 @@
 import numpy as Math # To import numpy package as "Math" for linalg operations with Matrices 
 import sys
-
 # Methods start 
              
 # User input for rows and columns
