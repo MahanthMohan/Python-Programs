@@ -1,4 +1,5 @@
 import numpy as Math # To import numpy package as "Math" for linalg operations with Matrices 
+import sys
 
 # Methods start 
              
@@ -13,6 +14,7 @@ def MatrixInputM():
  M = Math.matrix(enter_values).reshape(R, C)  # "Reshapes" it into a matrix
  print("This is your original Matrix")
  print(M)
+ return M
  
 def MatrixInputX():
   print("Enter the values for the second matrix")  
@@ -25,35 +27,32 @@ def MatrixInputX():
   X = Math.matrix(enter_values).reshape(R, C)  # "Reshapes" it into a matrix
   print("This is the second matrix")
   print(X)
+  return X
 
 def BasicOps(): # Basic Operations such as add, subtarct, multiply, and divide
     bcommand = input("Enter an operation - add, subtract, multiply, and divide ") # Takes user input for the command
+    M = MatrixInputM()
+    X = MatrixInputX()
     if(bcommand == "add"): # add
-     MatrixInputM()
-     MatrixInputX()
      result = Math.linalg.solve(M + X)
      print(result)
     
     elif(bcommand == "subtract"): # subtract
-     MatrixInputM()
-     MatrixInputX()
      result = Math.linalg.solve(M - X)
      print(result)   
     
     elif(bcommand == "multiply"): # multiply
-     MatrixInputM()
-     MatrixInputX()
      result = Math.linalg.solve(M * X)
      print(result)  
      
     elif(bcommand == "divide"):  # divide
-     MatrixInputM()
-     MatrixInputX()
      result = Math.linalg.solve(M / X) 
      print(result) 
       
 def LinearAlg():
     bcommand = input("Enter an operation - Inverse or Determinant ") # Takes user input for the command
+    M = MatrixInputM()
+    X = MatrixInputX()
     if(bcommand == "Inverse"): # Inverse
      MatrixInputM()    
      result = Math.linalg.inv(M)
@@ -68,13 +67,13 @@ def LinearAlg():
 
 command = input("Do you wish to do basicops, complexops, or exit? ") # Actual Program (Main) starts from here
 if(command == "exit"):
-    input.close()
+    sys.exit()
     
 elif(command == "basicops"):
     BasicOps()    
     
 elif(command == "complexops"):
-    LinearAlg()
+    LinearAlg() 
     
 
 
