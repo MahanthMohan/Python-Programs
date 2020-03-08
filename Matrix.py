@@ -17,6 +17,7 @@ def LinearAlg():
     elif(command == "Exponent"): # Exponent
         n = int(input("Enter the power the matrix needs to be raised to: "))
         result = Math.linalg.matrix_power(M,n)
+        print(result)
         
     elif(command == "Adjugate"): # Adjugate
         print("These are the values for the adjugate matrix")
@@ -24,7 +25,8 @@ def LinearAlg():
         for i in range(R): # Conditional for loop to calculate adjugate
           for j in range(C):
              res_matrix[i][j] = (-1)*(i+j)*(Math.linalg.det(M)) # logic - -1 * (matrix det * switched row and column)
-             print(res_matrix[i][j]) # prints values of the adjugate matrix in [1*x] form
+             X = Math.matrix(res_matrix[i][j]) # Converts it into matrix
+             print(X) # prints values of the adjugate matrix in [1*x] form
         
         
 # Methods end here
