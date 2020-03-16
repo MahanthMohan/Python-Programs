@@ -1,7 +1,7 @@
 import discord
 import requests 
 
-token = "Njg4ODI4NjY2NTQ4OTc3NzM3.Xm8F3w.GUg9E6Al-Mf6Kb_0C4mO-Jp6dyI"
+token = "Njg4ODI4NjY2NTQ4OTc3NzM3.Xm8HXg.55w3-mfuCQEGhYULElIOfArRLD8"
 client = discord.Client()
 
 @client.event
