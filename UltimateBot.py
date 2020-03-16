@@ -1,7 +1,7 @@
 import discord
 import requests 
 
-token = "Njg4ODI4NjY2NTQ4OTc3NzM3.Xm8HXg.55w3-mfuCQEGhYULElIOfArRLD8"
+token = "Discord_bot_token"
 client = discord.Client()
 
 @client.event
@@ -9,7 +9,7 @@ async def bot_responses(message):
  if message.content.find("!hello") != -1:
       await message.channel.send("Hello!")
 
- elif message.content.find("!How are you") != -1:
+ elif message.content.find("!How are you?") != -1:
       await message.channel.send("Great!")
        
  elif message.content.find("!Who are you?") != -1:
