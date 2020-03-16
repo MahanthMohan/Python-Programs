@@ -1,8 +1,7 @@
 import discord
 import requests 
-import wikipedia
 
-token = "Discord_bot_key"
+token = "Njg4ODI4NjY2NTQ4OTc3NzM3.Xm8F3w.GUg9E6Al-Mf6Kb_0C4mO-Jp6dyI"
 client = discord.Client()
 
 @client.event
@@ -27,8 +26,5 @@ async def bot_responses(message):
  
  elif message.content.find("!Thank you") != -1:
        await message.channel.send("Happy to help, as always!") 
- 
- elif message.content.find("!Search") != -1:
-       await message.channel.send(wikipedia.summary("Android", sentences = 4))
         
 client.run(token)
