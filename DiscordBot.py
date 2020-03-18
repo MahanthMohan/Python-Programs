@@ -30,9 +30,6 @@ async def on_message(message):
         
     if message.content.find("$What do you eat?") != -1:
             await message.channel.send("Loads of data!")
-            
-    if message.content.find("$What do you eat?") != -1:
-            await message.channel.send("Loads of data!") 
 
     if message.content.find("$Search") != -1:
             await message.channel.send("Enter the topic: ")
