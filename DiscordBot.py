@@ -30,9 +30,9 @@ async def on_message(message):
 
     if message.content == "$search" != -1:
             search = message.content
-            search.split(" ")
-            query = message[1] 
-            return_content = wikipedia.summary(query, sentences = 5)
+            bruh = search.split(" ")
+            query = bruh[1] 
+            return_content = wikipedia.summary(query)
             await message.channel.send(return_content)
             
     if message.content == "$users" != -1:
