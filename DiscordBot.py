@@ -49,5 +49,9 @@ async def on_message(message):
 
     if message.content == "$names" != -1:
             await message.channel.send(str(client.users))
+            
+    if message.content == "$author" != -1:
+            author = message.author
+            await message.channel.send("the author of this message is " + str(author))
                                             
 client.run(token)
