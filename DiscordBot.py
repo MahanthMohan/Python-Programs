@@ -2,7 +2,7 @@ import discord.ext.commands
 from discord.ext.commands import Bot
 import wikipedia
 
-token = 'bot_token_here'
+token = 'Njg5MjYxMjk0NTIzNzc3MDgz.XnLqnw.UvWvBzl_1Tq3by9qNHZKuPwEUXw'
 
 client = discord.Client()
 bot = Bot(command_prefix='$') 
@@ -29,8 +29,11 @@ async def on_message(message):
             await message.channel.send("Loads of data!")
 
     if message.content == "$search" != -1:
-            search = message.content 
-            return_content = wikipedia.summary(search, sentences = 5)
+            search = message.content
+            #!search arg
+            search.split(" ")
+            query = message[1] 
+            return_content = wikipedia.summary(query, sentences = 5)
             await message.channel.send(return_content)
             
     if message.content == "$users" != -1:
@@ -46,6 +49,6 @@ async def on_message(message):
             await message.channel.send("This message was sent to the " + str(ch) + " channel") 
 
     if message.content == "$names" != -1:
-            await message.channel.send(str(client.users))  
-                                   
+            await message.channel.send(str(client.users))
+                                            
 client.run(token)
