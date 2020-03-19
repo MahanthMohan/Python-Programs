@@ -30,7 +30,6 @@ async def on_message(message):
 
     if message.content == "$search" != -1:
             search = message.content
-            #!search arg
             search.split(" ")
             query = message[1] 
             return_content = wikipedia.summary(query, sentences = 5)
