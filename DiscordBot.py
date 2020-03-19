@@ -2,7 +2,7 @@ import discord.ext.commands
 from discord.ext.commands import Bot
 import wikipedia
 
-token = 'Njg5MjYxMjk0NTIzNzc3MDgz.XnLqnw.UvWvBzl_1Tq3by9qNHZKuPwEUXw'
+token = 'Njg5MjYxMjk0NTIzNzc3MDgz.XnLt9w.MYQWqCRjE8HiddG78i23sNm5XPo'
 
 client = discord.Client()
 bot = Bot(command_prefix='$') 
@@ -28,11 +28,11 @@ async def on_message(message):
     if message.content == "$what do you eat?" != -1:
             await message.channel.send("Loads of data!")
 
-    if message.content == "$search" != -1:
+    if message.content.startswith("$search") != -1:
             search = message.content
-            bruh = search.split(" ")
-            query = bruh[1] 
-            return_content = wikipedia.summary(query)
+            splitted_search = search.split(" ")
+            query = splitted_search[1] 
+            return_content = wikipedia.summary(query, sentences = 3)
             await message.channel.send(return_content)
             
     if message.content == "$users" != -1:
