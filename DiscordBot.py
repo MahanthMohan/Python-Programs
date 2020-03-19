@@ -46,10 +46,6 @@ async def on_message(message):
             await message.channel.send("This message was sent to the " + str(ch) + " channel") 
 
     if message.content == "$names" != -1:
-            await message.channel.send(str(client.users))
-            
-    if message.content == "$terminate" != -1:
-            await message.channel.send("The bot will be terminated..")
-            client.logout()   
+            await message.channel.send(str(client.users))  
                                    
 client.run(token)
