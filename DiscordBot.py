@@ -2,7 +2,7 @@ import discord.ext.commands
 from discord.ext.commands import Bot
 import wikipedia
 
-token = 'bot_token_here'
+token = 'bot_token_here' 
 
 client = discord.Client()
 bot = Bot(command_prefix='$') 
