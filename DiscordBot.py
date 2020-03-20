@@ -10,7 +10,7 @@ bot = Bot(command_prefix='$')
 @client.event
 async def on_message(message):
 
-    if message.content.find('$hello') != -1:
+    if message.content.find("$hello") != -1:
         await message.channel.send("Hello!")
 
     if message.content.find("$shrug") != -1:
@@ -43,7 +43,7 @@ async def on_message(message):
             ch = client.get_guild(689260912200122383)
             await message.channel.send("The server name is " + str(ch))
  
-    if message.content == "$channel" != -1:
+    if message.content.find("$channel") != -1:
             ch = message.channel
             await message.channel.send("This message was sent to the " + str(ch) + " channel") 
 
