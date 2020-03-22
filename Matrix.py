@@ -3,7 +3,7 @@ import sys # A package
 # Methods start 
     
 def LinearAlg():
-    command = input("Enter an operation - Inverse, Determinant, Exponent, or Adjugate: ") # Takes user input for the command
+    command = input("Enter an operation - Inverse, Determinant, Exponent, Adjugate, or Identity: ") # Takes user input for the command
     if(command == "Inverse"): # Inverse  
         result = Math.linalg.inv(M)
         print("This is the Inverse Matrix")
@@ -27,7 +27,11 @@ def LinearAlg():
              res_matrix[i][j] = (-1)*(i+j)*(Math.linalg.det(M)) # logic - -1 * (matrix det * switched row and column)
              X = Math.matrix(res_matrix[i][j]) # Converts it into matrix
              print(X) # prints values of the adjugate matrix in [1*x] form
-        
+             
+    elif(command == "Identity"): #Identity Matrix
+        result = (Math.linalg.inv(M))*M
+        print("This is the identity matrix")
+        print(result)
         
 # Methods end here
 
