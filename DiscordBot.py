@@ -30,8 +30,8 @@ async def on_message(message):
 
     if message.content.find("$search") != -1:
             search = message.content
-            splitted_search = search.split(" ")
-            query = splitted_search[1] 
+            callPhrase = "$search "
+            query = search.partition(callPhrase)[2]
             return_content = wikipedia.summary(query, sentences = 3)
             await message.channel.send(return_content)
             
