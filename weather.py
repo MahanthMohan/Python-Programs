@@ -28,7 +28,7 @@ WL1 = tk.Label(root, text = Current_temp)
 WL2 = tk.Label(root, text = Maximum_temp)
 WL3 = tk.Label(root, text = Minimum_temp)
 WL4 = tk.Label(root, text = Humidity)
-# Labels that display the parsed json text 
+# Labels that display the parsed json text
 WeatherButton = tk.Button(root, text = "Display Weather", command = DisplayWeather)
 WeatherButton.pack()
 WeatherButton.place(relx = '0.45', rely = '0.8', height = '55', width = '125')
