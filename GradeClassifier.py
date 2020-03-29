@@ -14,6 +14,7 @@ def grade_classifier(score, total):
     else:
         return "Invalid inputs"
 
+#look a edit with vscode
 
 Score = int(input("Enter your score: "))
 Total = int(input("Enter the total: "))
