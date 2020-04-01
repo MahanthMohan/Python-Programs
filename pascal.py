@@ -5,7 +5,6 @@ def Pascal(n):
             print(C, end = " ");  
             C = int(C * (line - i) / i);  
         print("");  
-  
 # Driver code  
 n = 5;  
-Pascal(n); 
+Pascal(n)
