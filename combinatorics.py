@@ -10,5 +10,7 @@ def Permutation(n,r):
     result = m.factorial(n)/m.factorial(n-r)
     return result
 
+n = int(input("Enter the total number: "))
+r = int(input("Enter number selected: "))
 print(Combintion(n,r))
 print(Permutation(n,r))
