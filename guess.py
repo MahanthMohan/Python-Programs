@@ -8,7 +8,7 @@ def Guess(guess):
         if guess > actual:
             isHigh = True
             guess = guess - guess/2
-            Guess(int(guess))   
+            Guess(int(guess))
         else:
             isHigh = False
             guess = guess + guess/2
@@ -16,7 +16,7 @@ def Guess(guess):
         guessAgain(guess,isHigh)
     else:
         return True
-    
+
 
 def guessAgain(guess, isHigh):
     if isHigh:

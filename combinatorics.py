@@ -2,7 +2,7 @@ import math as m
 
 # Order does not matter
 def Combination(n,r):
-    result = m.factorial(n)/(m.factorial(n-r)!*m.factorial(r))
+    result = m.factorial(n)/(m.factorial(n-r)*m.factorial(r))
     return result
 
 # Order matters
@@ -12,5 +12,5 @@ def Permutation(n,r):
 
 n = int(input("Enter the total number: "))
 r = int(input("Enter number selected: "))
-print(Combintion(n,r))
+print(Combination(n,r))
 print(Permutation(n,r))
