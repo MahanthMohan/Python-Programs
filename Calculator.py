@@ -1,22 +1,25 @@
 
-def add(n1,n2):
-    return n1 + n2
+class Calculator:
 
-def subtract(n1,n2):
-    return n1 - n2
+    def __init__(self,n1 = 10,n2 = 5):
+        self.n1 = n1
+        self.n2 = n2
 
-def multiply(n1,n2):
-    return n1 * n2
+    def add(self):
+        return self.n1 + self.n2
 
-def divide(n1,n2):
-    return n1 / n2
+    def subtract(self):
+        return self.n1 - self.n2
 
+    def multiply(self):
+        return self.n1 * self.n2
 
-print(add(10,5))
-print(subtract(10,5))
-print(multiply(10,5))
-print(divide(10,5))
+    def divide(self):
+        return self.n1 / self.n2
 
+calc = Calculator()
 
-
-    
+print(calc.add())
+print(calc.subtract())
+print(calc.multiply())
+print(calc.divide())
