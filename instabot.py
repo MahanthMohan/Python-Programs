@@ -1,73 +1,48 @@
-# imports
-from instapy import InstaPy
-from instapy import smart_run
 
-# login credentials
-insta_username = 'insta_username'
-insta_password = 'insta_password'
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.keys import Keys
+from time import sleep
 
-# get an InstaPy session!
-# set headless_browser=True to run InstaPy in the background
-session = InstaPy(username=insta_username,
-                  password=insta_password,
-                  headless_browser=False)
+class instabot():
+    def __init__(self, username, password):
+        self.browser = webdriver.Chrome(ChromeDriverManager().install())
+        self.username = username
+        self.password = password
 
-with smart_run(session):
-    """ Activity flow """
-    # general settings
-    session.set_relationship_bounds(enabled=True,
-                                    delimit_by_numbers=True,
-                                    max_followers=4590,
-                                    min_followers=45,
-                                    min_following=77)
+    def login(self):
+        self.browser.get('https://www.instagram.com/accounts/login/')
 
-    session.set_dont_include(["friend1", "friend2", "friend3"])
-    session.set_dont_like(["pizza", "#store"])
+        emailInput = self.browser.find_elements_by_css_selector('form input')[0]
+        passwordInput = self.browser.find_elements_by_css_selector('form input')[1]
 
-    # activities
+        emailInput.send_keys(self.username)
+        passwordInput.send_keys(self.password)
+        passwordInput.send_keys(Keys.ENTER)
+        sleep(2)
 
-    """ Massive Follow of users followers (I suggest to follow not less than
-    3500/4000 users for better results)...
-    """
-    session.follow_user_followers(['user1', 'user2', 'user3'], amount=800,
-                                  randomize=False, interact=False)
+    def followUser(self, username):
+        self.browser.get('https://www.instagram.com/' + username + '/')
+        sleep(2)
+        followButton = self.browser.find_element_by_css_selector('button')
+        if (followButton.text != 'Following'):
+            followButton.click()
+            sleep(2)
+        else:
+            print("You are already following this user")
 
-    """ First step of Unfollow action - Unfollow not follower users...
-    """
-    session.unfollow_users(amount=500, InstapyFollowed=(True, "nonfollowers"),
-                           style="FIFO",
-                           unfollow_after=12 * 60 * 60, sleep_delay=601)
+    def UnfollowUser(self, username):
+        self.browser.get('https://www.instagram.com/' + username + '/')
+        sleep(2)
+        followButton = self.browser.find_element_by_css_selector('button')
+        if (followButton.text != 'Following'):
+            followButton.click()
+            sleep(2)
+            confirmButton = self.browser.find_element_by_xpath('//button[text() = "Unfollow"]')
+            confirmButton.click()
+        else:
+            print("You are not following this user")
 
-    """ Second step of Massive Follow...
-    """
-    session.follow_user_followers(['user1', 'user2', 'user3'], amount=800,
-                                  randomize=False, interact=False)
-
-    """ Second step of Unfollow action - Unfollow not follower users...
-    """
-    session.unfollow_users(amount=500, InstapyFollowed=(True, "nonfollowers"),
-                           style="FIFO",
-                           unfollow_after=12 * 60 * 60, sleep_delay=601)
-
-    """ Clean all followed user - Unfollow all users followed by InstaPy...
-    """
-    session.unfollow_users(amount=500, InstapyFollowed=(True, "all"),
-                           style="FIFO", unfollow_after=24 * 60 * 60,
-                           sleep_delay=601)
-
-    """ Joining Engagement Pods...
-    """
-    photo_comments = ['Nice shot! @{}',
-        'Awesome! @{}',
-        'Cool :thumbsup:',
-        'Just incredible :open_mouth:',
-        'What camera did you use @{}?',
-        'Love your posts @{}',
-        'Looks awesome @{}',
-        'Nice @{}',
-        ':raised_hands: Yes!',
-        'I can feel your passion @{} :muscle:']
-
-    session.set_do_comment(enabled = True, percentage = 95)
-    session.set_comments(photo_comments, media = 'Photo')
-    session.join_pods(topic='food', engagement_mode='no_comments')
+instabot = instabot(username, password)
+instabot.login()
+instabot.followuser()
