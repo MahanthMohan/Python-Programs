@@ -43,6 +43,6 @@ class instabot():
         else:
             print("You are not following this user")
 
-instabot = instabot(username, password)
+instabot = instabot(str(input("username")), str(input("password")))
 instabot.login()
 instabot.followuser()
