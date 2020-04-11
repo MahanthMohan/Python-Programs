@@ -24,20 +24,20 @@ class Instabot:
 
     def getFollowers(bot):
         bot.driver.find_element_by_xpath("/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[5]/span/img").click()
-        sleep(2)
+        sleep(3)
         follower_box = bot.driver.find_element_by_xpath("//a[contains(@href, '/{}/{}/')]".format(bot.username,"followers"))
         follower_box.click()
-        sleep(2)
+        sleep(3)
         #bot.driver.execute_script("{}.scrollTo(0,{}.scrollHeight)".format(follower_box,follower_box))
         print("You have " + follower_box.text)
 
     
     def getFollowing(bot):
         bot.driver.find_element_by_xpath("/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[5]/span/img").click()
-        sleep(2)
+        sleep(3)
         following_box = bot.driver.find_element_by_xpath("//a[contains(@href, '/{}/{}/')]".format(bot.username,"following"))
         following_box.click()
-        sleep(2)
+        sleep(3)
         #bot.driver.execute_script("{}.scrollTo(0,{}.scrollHeight)".format(following_box,following_box))
         print("You have " + following_box.text + " you")
 
@@ -46,7 +46,7 @@ class Instabot:
 
     def ViewPosts(bot):
         bot.driver.find_element_by_xpath("/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[5]/span/img").click()
-        sleep(2)
+        sleep(3)
         bot.driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
 
 username = input("Enter your username: ")
