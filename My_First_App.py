@@ -4,7 +4,7 @@ from kivy.uix.label import Label
 
 class MyApp(App):
     def create(self):
-        return Label(text = "Mahanth's first python app")
+        return Label(text = "Hello World!")
 
 if __name__ == "__main__":
     MyApp.run()
