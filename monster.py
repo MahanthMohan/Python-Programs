@@ -2,15 +2,14 @@ import numpy as np
 
 class monster:
 
-    def eliminate(self,n):
+    def eliminate(self,n,input):
         self.n = n
+        self.input = input
         for i in range(0, self.n):
-            if(n == 0):
-                return 0
-            elif(n > 0 and i%2 != 0):
-                initial_values = np.array([np.arange(1,self.n + 1)])
-                output = np.array([initial_values[0][i]])
+            if(i%2 != 0):
+                output = [self.input[0][i]]
+                return monster.eliminate(int(self.n/2),output)
 
 monster = monster()
-print()
+print(monster.eliminate(10,input = [(np.arange(1,101))]))
 
