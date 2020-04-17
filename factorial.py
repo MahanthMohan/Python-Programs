@@ -1,7 +1,11 @@
-def factorial(n):
+class factorial:
+
+    def factorial(self,n):
+        self.n = n
         if(n == 1):
             return 1
         else:
-            return n * factorial(n - 1)
+            return n * fact.factorial(n - 1)
 
-print(factorial(9))
+fact = factorial()
+print(fact.factorial(4))
