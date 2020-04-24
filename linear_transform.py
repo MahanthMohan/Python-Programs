@@ -16,14 +16,15 @@ class linalg:
     def transform2d(self,vector,transform_angle):
         self.transform_angle = transform_angle
         self.vector = vector
-        input_values =  math.cos(transform_angle),(-1) * math.sin(transform_angle),math.sin(transform_angle),math.cos(transform_angle)
-        transform_matrix = np.matrix(input_values).reshape(2,2)
+        rad_angle = (transform_angle * (math.pi/180))
+        input_values =  math.cos(rad_angle),(-1) * math.sin(rad_angle),math.sin(rad_angle),math.cos(rad_angle)
+        rounded_values = [round(element, 2) for element in input_values]
+        transform_matrix = np.matrix(rounded_values).reshape(2,2)
         transformed_vector = np.dot(vector,transform_matrix)
         return transformed_vector
-        
-        
+
 
 lin = linalg()
 
-vector = lin.CreateMatrix(R = int(input("Enter the number of rows (r<=2): ")), C = 2)
+vector = lin.CreateMatrix(R = int(input("Enter the number of rows (r<=3): ")), C = 2)
 print(lin.transform2d(vector,lin.CollectAngleInput()))
