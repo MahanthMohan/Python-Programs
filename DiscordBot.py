@@ -7,6 +7,11 @@ token = 'bot_token_here'
 client = discord.Client()
 bot = Bot(command_prefix='$')
 
+async def getSummary(query):
+        summary = await wikipedia.summary(query)
+        return summary
+
+
 @client.event
 async def on_message(message):
 
@@ -32,7 +37,7 @@ async def on_message(message):
             search = message.content
             callPhrase = "$search "
             query = search.partition(callPhrase)[2]
-            return_content = wikipedia.summary(query, sentences = 3)
+            return_content = await getSummary(query)
             await message.channel.send(return_content)
 
     if message.content.find("$users") != -1:
