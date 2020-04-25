@@ -2,29 +2,48 @@ import numpy as np
 import math
 
 class linalg:
-    def CreateMatrix(self,R,C):
-        self.R = R
-        self.C = C
-        input_values = input("Enter the coordinates of the vector: ")
-        M = np.matrix(input_values).reshape(R,C)
-        return M
 
     def CollectAngleInput(self):
-        transform_angle = float(input("Enter an angle measure: "))
+        transform_angle = float(input("Rotation angle: "))
         return transform_angle
 
-    def transform2d(self,vector,transform_angle):
+    def transform2d(self,transform_angle):
         self.transform_angle = transform_angle
-        self.vector = vector
         rad_angle = (transform_angle * (math.pi/180))
         input_values =  math.cos(rad_angle),(-1) * math.sin(rad_angle),math.sin(rad_angle),math.cos(rad_angle)
-        rounded_values = [round(element, 2) for element in input_values]
+        rounded_values = [round(element, 3) for element in input_values]
         transform_matrix = np.matrix(rounded_values).reshape(2,2)
-        transformed_vector = np.dot(vector,transform_matrix)
-        return transformed_vector
+        return transform_matrix
+    
+    def transform3d(self,transform_angle):
+        self.transform_angle = transform_angle
+        local_command = input("Enter a type of rotation (X,Y, or Z): ")
+        if local_command == "X":
+            rad_angle = (transform_angle * (math.pi/180))
+            input_values =  1,0,0,0,math.cos(rad_angle),(-1)*math.sin(rad_angle),0,math.sin(rad_angle),math.cos(rad_angle)
+            rounded_values = [round(element, 3) for element in input_values]
+            transform_matrix = np.matrix(rounded_values).reshape(3,3)
+            return transform_matrix
+
+        elif local_command == "Y":
+            rad_angle = (transform_angle * (math.pi/180))
+            input_values =  math.cos(rad_angle),0,math.sin(rad_angle),0,1,0,(-1)*math.sin(rad_angle),0,math.cos(rad_angle)
+            rounded_values = [round(element, 3) for element in input_values]
+            transform_matrix = np.matrix(rounded_values).reshape(3,3)
+            return transform_matrix
+            
+        elif local_command == "Z":
+            rad_angle = (transform_angle * (math.pi/180))
+            input_values =  math.cos(rad_angle),(-1)*math.sin(rad_angle),0,math.sin(rad_angle),math.cos(rad_angle),0,0,0,1
+            rounded_values = [round(element, 3) for element in input_values]
+            transform_matrix = np.matrix(rounded_values).reshape(3,3)
+            return transform_matrix
 
 
 lin = linalg()
 
-vector = lin.CreateMatrix(R = int(input("Enter the number of rows (r<=3): ")), C = 2)
-print(lin.transform2d(vector,lin.CollectAngleInput()))
+command = input("Enter a command (2D or 3D): ")
+if (command == '2D'):
+    print(lin.transform2d(lin.CollectAngleInput()))
+elif (command == '3D'):
+    print(lin.transform3d(lin.CollectAngleInput()))
