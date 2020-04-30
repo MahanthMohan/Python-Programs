@@ -1,5 +1,5 @@
 def concatenate(a,b):
-    if (type(a) and type(b) == "integer"):
+    if (type(a) and type(b) == "<class 'int'>"):
         res = str(a) + str(b)
         return res
 
@@ -7,4 +7,4 @@ def concatenate(a,b):
         res = int(a) + int(b)
         return res
 
-print(concatenate(12,13))
+print(concatenate(int(12),int(13)))
