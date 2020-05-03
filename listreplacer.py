@@ -18,7 +18,7 @@ class listreplacer:
         while(index <= list_len):
             if(index%3 == 0):
                 for list[index] in list:
-            return replaced_list
+                return replaced_list
             elif index%5 == 0):
                 replaced_list = [list.replace(list[index],"buzz") for list[index] in list]
                 return replaced_list
