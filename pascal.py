@@ -5,6 +5,7 @@ def Pascal(n):
             print(C, end = " ")
             C = int(C * (line - i) / i)
         print("")
+        
 # Driver code
 n = int(input("Enter the number of row(s): "));  
 Pascal(n)
