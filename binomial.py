@@ -17,6 +17,9 @@ class binomial:
         if(n == k):
             return 1
 
+        if(n < k):
+            return "Not Possible"
+            
         else:
             coefficient = binomial.factorial(n)/(binomial.factorial(n - k) * binomial.factorial(k))
             return coefficient
