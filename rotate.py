@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from mpl_toolkits import mplot3d
+from mpl_toolkits.mplot3d import axes3d
 import numpy as np
 import math
 
@@ -43,5 +43,8 @@ ax = plt.axes(projection = "3d")
 ax.set_xlabel('x')
 ax.set_ylabel('y')
 ax.set_zlabel('z')
+X,Y,Z = np.array([1],[1],[1])
+ax.plot_wireframe(X,Y,Z)
+plt.show()
 angle = float(input("Enter an angle measure: "))
 print(rotate.transform3d(angle))

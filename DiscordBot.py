@@ -15,6 +15,10 @@ async def getSummary(query):
 @client.event
 async def on_message(message):
 
+    if message.content.find("$help") != -1:
+        await message.channel.send("The prefix is $")
+        await message.channel.send("Common commands include Hello, Shrug, Search, Channel, and Users")
+
     if message.content.find("$hello") != -1:
         await message.channel.send("Hello!")
 
