@@ -1,13 +1,18 @@
 import os
-import simpleaudio as audio
 from playsound import playsound
 
-print("*** A simple audio player ***")
-audio = input("Enter the name of the audio file: ")
-format = input("Enter the audio format (mp3 or wav) : ")
+def getFileName(path):
+    trimmed_path = path.replace("C:","")
+    file_name = os.path.basename(trimmed_path)
+    return file_name
 
-if(format == "mp3"):
- playsound(audio + ".{}".format(format))
-elif(format == "wav"):
- audio_request = audio.WaveObject.from_wave_file(audio + ".{}".format(format))
- play = audio_request.play()
+
+def playaudio(file_name,repeat):
+    initial = 0
+    while(initial < repeat):
+        playsound(path)
+        initial += 1
+
+path = input("Name/Path of the audio file: ")
+repeat = int(input("Number of times: "))
+playaudio(getFileName(path), repeat)
