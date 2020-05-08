@@ -64,9 +64,11 @@ async def on_message(message):
             author = message.author
             await message.channel.send("the author of this message is " + str(author))
 
-    if message.content.find("$calculate") != -1:
-            query = message.content
-            
-            await message.channel.send(MathSolver.solve.calculate())
+    if message.content.find("$factor") != -1:
+            content = message.content
+            query = content.split(" ")
+            operation = query[0].replace("$","")
+            expression = query[1]
+            await message.channel.send(MathSolver.solve.calculate(operation, expression))
 
 client.run(token)

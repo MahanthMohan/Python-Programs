@@ -1,6 +1,7 @@
 import requests
 
 class MathSolver:
+    
     def intro(self):
         common_operations = "operations: simplify, factor, derive, integrate, zeroes, tangent, area, cosin, sin, tan, arcos, arcsin, arctan, abs, log"
         expression = "All entered expressions should be algebraic"
@@ -16,8 +17,3 @@ class MathSolver:
         return result
 
 solve = MathSolver()
-
-operation = input("Enter any operation: ")
-expression = input("Enter the expression: ")
-print(solve.intro())
-print(solve.calculate(operation, expression))
