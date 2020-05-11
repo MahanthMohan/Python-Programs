@@ -1,6 +1,7 @@
 import discord.ext.commands
 from discord.ext.commands import Bot
 import wikipedia
+import requests
 
 token = input("Bot token: ")
 
@@ -62,5 +63,14 @@ async def on_message(message):
     if message.content.find("$author") != -1:
             author = message.author
             await message.channel.send("the author of this message is " + str(author))
+
+    if message.content.find("$translate") != -1:
+            content = message.content
+            callPhrase = "$translate "
+            query = content.partition(callPhrase)[2]
+            request_URL = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20200510T203759Z.c32fdda6ccace388.761b8b4cbfa468781df5a3b117f3eccb0407f241&text={}&lang=en&format=plain".format(query)
+            return_data = requests.get(request_URL).json()
+            translated_text = return_data['text']
+            await message.channel.send(translated_text)
 
 client.run(token)
