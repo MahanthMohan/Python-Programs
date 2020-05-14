@@ -34,9 +34,10 @@ class rotation_animation:
         self.transform_matrix = transform_matrix
         enter_values = input("Enter the vector coordinates: ")
         splitted_values = enter_values.split(",")
-        vector = np.matrix([splitted_values]).reshape(1,3)
-        #transform_vector = np.outer(transform_matrix,vector)
-        return splitted_values
+        input_values = [int(element) for element in splitted_values]
+        vector = np.matrix([input_values]).reshape(1,3)
+        transform_vector = np.dot(transform_matrix,vector)
+        return transform_vector
 
 rotate = rotation_animation()
 
@@ -51,6 +52,5 @@ ax.plot_wireframe(X,Y,Z)
 plt.show()
 """
 angle = float(input("Enter an angle measure: "))
-vector = np.array([4,3,5])
 print(rotate.transformvector(rotate.transform(angle)))
 
