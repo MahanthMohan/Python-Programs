@@ -3,7 +3,15 @@ from mpl_toolkits.mplot3d import axes3d
 import numpy as np
 import math
 
-class rotation_animation:
+class rotation:
+    def input(self):
+        angle = float(input("Angle measure: "))
+        coordinates = input("Vector coordinates: ")
+        splitted_coordinates = coordinates.split(",")
+        input_values = [int(element) for element in splitted_coordinates]
+        vector = np.matrix([input_values]).reshape(1,3)
+        return_list = [angle,vector]
+        return return_list
 
     def transform(self,transform_angle):
         self.transform_angle = transform_angle
@@ -30,16 +38,16 @@ class rotation_animation:
             transform_matrix = np.matrix(rounded_values).reshape(3,3)
             return transform_matrix
 
-    def transformvector(self, transform_matrix):
+    def tr_vector(self, vector, transform_matrix):
         self.transform_matrix = transform_matrix
-        enter_values = input("Enter the vector coordinates: ")
-        splitted_values = enter_values.split(",")
-        input_values = [int(element) for element in splitted_values]
-        vector = np.matrix([input_values]).reshape(1,3)
-        transform_vector = np.dot(transform_matrix,vector)
-        return transform_vector
+        self.vector = vector
+        tr_vector = np.dot(transform_matrix,vector)
+        return tr_vector
 
-rotate = rotation_animation()
+rotate = rotation()
+
+list = rotate.input()
+print(rotate.tr_vector(list[1],rotate.transform(list[0])))
 
 """     
 fig = plt.figure()
@@ -51,6 +59,7 @@ X,Y,Z = 1,2,3
 ax.plot_wireframe(X,Y,Z)
 plt.show()
 """
-angle = float(input("Enter an angle measure: "))
-print(rotate.transformvector(rotate.transform(angle)))
+
+
+
 
