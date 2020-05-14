@@ -3,11 +3,12 @@ from mpl_toolkits.mplot3d import axes3d
 import numpy as np
 import math
 
-class rotate:
+class rotation_animation:
 
-    def transform3d(self,transform_angle):
+    def transform(self,transform_angle):
         self.transform_angle = transform_angle
         local_command = input("Enter a type of rotation (X,Y, or Z): ")
+
         if local_command == "X":
             rad_angle = (transform_angle * (math.pi/180))
             input_values =  1,0,0,0,math.cos(rad_angle),(-1)*math.sin(rad_angle),0,math.sin(rad_angle),math.cos(rad_angle)
@@ -29,22 +30,27 @@ class rotate:
             transform_matrix = np.matrix(rounded_values).reshape(3,3)
             return transform_matrix
 
-    def transformvector(self):
+    def transformvector(self, transform_matrix):
+        self.transform_matrix = transform_matrix
         enter_values = input("Enter the vector coordinates: ")
         splitted_values = enter_values.split(",")
         vector = np.matrix([splitted_values]).reshape(1,3)
-        print(vector)
+        #transform_vector = np.outer(transform_matrix,vector)
+        return splitted_values
 
+rotate = rotation_animation()
 
-rotate = rotate()
-
+"""     
 fig = plt.figure()
 ax = plt.axes(projection = "3d")
 ax.set_xlabel('x')
 ax.set_ylabel('y')
 ax.set_zlabel('z')
-X,Y,Z = np.array([1],[1],[1])
+X,Y,Z = 1,2,3
 ax.plot_wireframe(X,Y,Z)
 plt.show()
+"""
 angle = float(input("Enter an angle measure: "))
-print(rotate.transform3d(angle))
+vector = np.array([4,3,5])
+print(rotate.transformvector(rotate.transform(angle)))
+
