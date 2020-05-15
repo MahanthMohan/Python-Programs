@@ -9,7 +9,7 @@ class rotation:
         coordinates = input("Vector coordinates: ")
         splitted_coordinates = coordinates.split(",")
         input_values = [int(element) for element in splitted_coordinates]
-        vector = np.matrix([input_values]).reshape(1,3)
+        vector = np.matrix([input_values]).reshape(3,1)
         return_list = [angle,vector]
         return return_list
 
@@ -41,7 +41,7 @@ class rotation:
     def tr_vector(self, vector, transform_matrix):
         self.transform_matrix = transform_matrix
         self.vector = vector
-        tr_vector = np.dot(transform_matrix,vector)
+        tr_vector = transform_matrix @ vector
         return tr_vector
 
 rotate = rotation()
