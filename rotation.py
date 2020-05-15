@@ -4,6 +4,7 @@ import numpy as np
 import math
 
 class rotation:
+    #collect input values from the user for the vector coordinates and angle measure
     def input(self):
         angle = float(input("Angle measure: "))
         coordinates = input("Vector coordinates: ")
@@ -12,7 +13,7 @@ class rotation:
         vector = np.matrix([input_values]).reshape(3,1)
         return_list = [angle,vector]
         return return_list
-
+# Function to calculate transformation matrix depending on the angle
     def transform(self,transform_angle):
         self.transform_angle = transform_angle
         local_command = input("Enter a type of rotation (X,Y, or Z): ")
@@ -48,18 +49,19 @@ rotate = rotation()
 
 list = rotate.input()
 
-print(rotate.tr_vector(list[1],rotate.transform(list[0])))
-
-"""   
+# defining angle and vector values as return list indices and as a function input
+angle = list[0]
+vector = list[1]
+print(rotate.tr_vector(vector,rotate.transform(angle)))
+   
 fig = plt.figure()
 ax = plt.axes(projection = "3d")
 ax.set_xlabel('x')
 ax.set_ylabel('y')
 ax.set_zlabel('z')
-X,Y,Z = list[1]
+X,Y,Z = list[0]
 ax.plot(X,Y,Z)
 plt.show()
-"""
 
 
 
