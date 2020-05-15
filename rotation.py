@@ -8,7 +8,7 @@ class rotation:
         angle = float(input("Angle measure: "))
         coordinates = input("Vector coordinates: ")
         splitted_coordinates = coordinates.split(",")
-        input_values = [int(element) for element in splitted_coordinates]
+        input_values = [float(element) for element in splitted_coordinates]
         vector = np.matrix([input_values]).reshape(3,1)
         return_list = [angle,vector]
         return return_list
@@ -41,24 +41,24 @@ class rotation:
     def tr_vector(self, vector, transform_matrix):
         self.transform_matrix = transform_matrix
         self.vector = vector
-        tr_vector = transform_matrix @ vector
+        tr_vector = np.dot(transform_matrix,vector)
         return tr_vector
 
 rotate = rotation()
 
 list = rotate.input()
-print(rotate.tr_vector(list[1],rotate.transform(list[0])))
 
-"""     
+print(list[1])
+print(rotate.tr_vector(list[1],rotate.transform(list[0])))
+   
 fig = plt.figure()
 ax = plt.axes(projection = "3d")
 ax.set_xlabel('x')
 ax.set_ylabel('y')
 ax.set_zlabel('z')
 X,Y,Z = 1,2,3
-ax.plot_wireframe(X,Y,Z)
 plt.show()
-"""
+
 
 
 
