@@ -48,16 +48,18 @@ rotate = rotation()
 
 list = rotate.input()
 
-print(list[1])
 print(rotate.tr_vector(list[1],rotate.transform(list[0])))
-   
+
+"""   
 fig = plt.figure()
 ax = plt.axes(projection = "3d")
 ax.set_xlabel('x')
 ax.set_ylabel('y')
 ax.set_zlabel('z')
-X,Y,Z = 1,2,3
+X,Y,Z = list[1]
+ax.plot(X,Y,Z)
 plt.show()
+"""
 
 
 
