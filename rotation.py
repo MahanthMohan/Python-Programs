@@ -72,5 +72,5 @@ ax.set_xlabel('X Axis')
 ax.set_ylabel('Y Axis')
 ax.set_zlabel('Z Axis')
 
-plt.savefig("/Users/mohan/OneDrive/Documents/fig/rotation.png")
+plt.savefig("/Users/mohan/Downloads/rotation.png")
 plt.show()
