@@ -8,11 +8,6 @@ token = input("Bot token: ")
 client = discord.Client()
 bot = Bot(command_prefix='$')
 
-async def getSummary(query):
-        summary = await wikipedia.summary(query)
-        return summary
-
-
 @client.event
 async def on_message(message):
 
@@ -72,5 +67,9 @@ async def on_message(message):
             return_data = requests.get(request_URL).json()
             translated_text = return_data['text']
             await message.channel.send(translated_text)
+
+    if message.content.find("$terminate") != -1:
+            await message.channel.send("The bot was terminated")
+            await client.close()
 
 client.run(token)
