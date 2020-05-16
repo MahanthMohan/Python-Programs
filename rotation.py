@@ -66,7 +66,7 @@ ax.set_zlabel('Z Axis')
 for v in vectors:
     plot_vectors = np.array([v[0],v[1]])
     vect_len = np.linalg.norm(plot_vectors) # np.linalg.norm inputs the vector into a linear frobenius equation to calculate ||v||
-    ax.quiver(vector[0],vector[1],vector[2],vector[3],vector[4],vector[5], pivot='tail',arrow_length_ratio=0.3/vect_len)
+    ax.quiver(vector[0],vector[1], pivot = "tail",arrow_length_ratio = 0.1/vect_len)
 
 plt.show()
 
