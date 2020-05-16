@@ -10,7 +10,7 @@ class rotation:
         coordinates = input("Vector coordinates: ")
         splitted_coordinates = coordinates.split(",")
         input_values = [float(element) for element in splitted_coordinates]
-        vector = np.matrix([input_values]).reshape(3,1)
+        vector = np.array([input_values]).reshape(3,1)
         return_list = [angle,vector]
         return return_list
 
@@ -23,21 +23,21 @@ class rotation:
             rad_angle = (transform_angle * (math.pi/180))
             input_values =  1,0,0,0,math.cos(rad_angle),(-1)*math.sin(rad_angle),0,math.sin(rad_angle),math.cos(rad_angle)
             rounded_values = [round(element, 3) for element in input_values]
-            transform_matrix = np.matrix(rounded_values).reshape(3,3)
+            transform_matrix = np.array(rounded_values).reshape(3,3)
             return transform_matrix
 
         elif local_command == "Y":
             rad_angle = (transform_angle * (math.pi/180))
             input_values =  math.cos(rad_angle),0,math.sin(rad_angle),0,1,0,(-1)*math.sin(rad_angle),0,math.cos(rad_angle)
             rounded_values = [round(element, 3) for element in input_values]
-            transform_matrix = np.matrix(rounded_values).reshape(3,3)
+            transform_matrix = np.array(rounded_values).reshape(3,3)
             return transform_matrix
             
         elif local_command == "Z":
             rad_angle = (transform_angle * (math.pi/180))
             input_values =  math.cos(rad_angle),(-1)*math.sin(rad_angle),0,math.sin(rad_angle),math.cos(rad_angle),0,0,0,1
             rounded_values = [round(element, 3) for element in input_values]
-            transform_matrix = np.matrix(rounded_values).reshape(3,3)
+            transform_matrix = np.array(rounded_values).reshape(3,3)
             return transform_matrix
 
     def tr_vector(self, vector, transform_matrix):
@@ -54,19 +54,23 @@ list = rotate.input()
 angle = list[0]
 vector = list[1] 
 tr_vector = rotate.tr_vector(vector,rotate.transform(angle))
-   
+print(tr_vector)
+
 # Plotting the inital and the transformed vector
 vectors = np.array([vector,tr_vector])
+
 fig = plt.figure()
-ax = plt.axes(projection = "3d")
+ax = plt.axes(projection = "3d")    
+
+for v in vectors:
+    plot_vectors = np.array([v[0],v[1],v[2]])
+    ax.quiver(0,0,0,v[0],v[1],v[2])
+
+ax.set_xlim([-10,10])
+ax.set_ylim([-10,10])
+ax.set_zlim([-10,10])
 ax.set_xlabel('X Axis')
 ax.set_ylabel('Y Axis')
 ax.set_zlabel('Z Axis')
 
-for v in vectors:
-    plot_vectors = np.array([v[0],v[1]])
-    vect_len = np.linalg.norm(plot_vectors) # np.linalg.norm inputs the vector into a linear frobenius equation to calculate ||v||
-    ax.quiver(vector[0],vector[1], pivot = "tail",arrow_length_ratio = 0.1/vect_len)
-
 plt.show()
-
