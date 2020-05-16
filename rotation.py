@@ -60,7 +60,7 @@ print(tr_vector)
 vectors = np.array([vector,tr_vector])
 
 fig = plt.figure()
-ax = fig.add_subplot(111, projection = "3d")    
+ax = fig.add_subplot(projection = "3d")    
 
 for v in vectors:
     ax.quiver(0,0,0,v[0],v[1],v[2])
@@ -68,6 +68,7 @@ for v in vectors:
 ax.set_xlim([-10,10])
 ax.set_ylim([-10,10])
 ax.set_zlim([-10,10])
+ax.title.set_text("3D Rotation")
 ax.set_xlabel('X Axis')
 ax.set_ylabel('Y Axis')
 ax.set_zlabel('Z Axis')
