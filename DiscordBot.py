@@ -19,6 +19,8 @@ async def on_message(message):
         await message.channel.send("Hello!")
 
     if message.content.find("$say") != -1:
+            content = message.content
+            content_list = content[1]
             await message.channel.send(message.content)
 
     if message.content.find("$shrug") != -1:
