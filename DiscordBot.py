@@ -9,6 +9,11 @@ client = discord.Client()
 bot = Bot(command_prefix='$')
 
 @client.event
+async def member_join(member):
+        for channel in member.server.channels:
+                await client.send_message("Welcome to the server {}".format(member.mention))
+
+@client.event
 async def on_message(message):
 
     if message.content.find("$help") != -1:
@@ -20,8 +25,9 @@ async def on_message(message):
 
     if message.content.find("$say") != -1:
             content = message.content
-            content_list = content[1]
-            await message.channel.send(message.content)
+            callPhrase = "$say "
+            return_content = content.partition(callPhrase)[2]
+            await message.channel.send(return_content)
 
     if message.content.find("$shrug") != -1:
         await message.channel.send('¯\_(ツ)_/¯')
@@ -71,24 +77,24 @@ async def on_message(message):
             request_URL = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20200510T203759Z.c32fdda6ccace388.761b8b4cbfa468781df5a3b117f3eccb0407f241&text={}&lang=en&format=plain".format(query)
             return_data = requests.get(request_URL).json()
             translated_text = return_data['text']
-            await message.channel.send(translated_text)
+            await message.channel.send(translated_text[0])
 
     if message.content.find("$weather") != -1:
         content = message.content
-        content_list = content.split(" ")
-        city = content_list[1]
+        callPhrase = "$weather "
+        city = content.partition(callPhrase)[2]
         request_url = 'http://api.openweathermap.org/data/2.5/weather?appid=a82ce5d667628af3985ec52d8a1a91eb&q={}'.format(city)
         return_data = requests.get(request_url).json()
         relevant_data = return_data['main']
         Current_temp = 'The Current temperature is ' + str(int((relevant_data['temp']) - 273)) + " degrees Celsius"
         Maximum_temp = 'The Maximum temperature is ' + str(int(relevant_data['temp_max'] - 273)) + " degrees Celsius"
         Minimum_temp = 'The Minimum temperature is ' + str(int(relevant_data['temp_min'] - 273)) + " degrees Celsius"
-        Humidity = 'The Humidity is ' + str((relevant_data['humidity']))
-        await message.channel.send(Current_temp, Maximum_temp, Minimum_temp, Humidity)
+        await message.channel.send(Current_temp)
+        await message.channel.send(Maximum_temp)
+        await message.channel.send(Minimum_temp)
 
     if message.content.find("$terminate") != -1:
             await message.channel.send("***The bot was terminated***")
             await client.close()
-
 
 client.run(token)
