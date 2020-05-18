@@ -3,7 +3,10 @@ from discord.ext.commands import Bot
 import wikipedia
 import requests
 
-token = input("Bot token: ")
+def get_token():
+    f = open("token.txt", "r")
+    token = f.read().replace("bot_token: ","")
+    return token
 
 client = discord.Client()
 bot = Bot(command_prefix='$')
@@ -97,4 +100,4 @@ async def on_message(message):
             await message.channel.send("***The bot was terminated***")
             await client.close()
 
-client.run(token)
+client.run(get_token())
