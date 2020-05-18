@@ -100,4 +100,8 @@ async def on_message(message):
             await message.channel.send("***The bot was terminated***")
             await client.close()
 
+    if message.content.find("$ping") != -1:
+            ping = client.latency()
+            await message.channel.send(ping)
+
 client.run(get_token())
