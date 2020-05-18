@@ -2,7 +2,7 @@ import discord.ext.commands
 from discord.ext.commands import Bot
 import wikipedia
 import requests
-import wordspeller 
+from DiscordBot import wordspeller
 
 def get_token():
     f = open("token.txt", "r")
@@ -105,6 +105,6 @@ async def on_message(message):
         content = message.content
         callPhrase = "$spell "
         query = content.partition(callPhrase)[2]
-        wordspeller.wordspeller.spellword(query)
+        wordspeller.wordspeller.spellword(query)        
 
 client.run(get_token())
