@@ -2,6 +2,7 @@ import discord.ext.commands
 from discord.ext.commands import Bot
 import wikipedia
 import requests
+import wordspeller 
 
 def get_token():
     f = open("token.txt", "r")
@@ -67,7 +68,7 @@ async def on_message(message):
             await message.channel.send("This message was sent to the " + str(ch) + " channel")
 
     if message.content.find("$names") != -1:
-            await message.channel.send(str(client.users))
+            await message.channel.send(str(client.get_all_members()))
 
     if message.content.find("$author") != -1:
             author = message.author
@@ -100,8 +101,10 @@ async def on_message(message):
             await message.channel.send("***The bot was terminated***")
             await client.close()
 
-    if message.content.find("$ping") != -1:
-            ping = client.latency()
-            await message.channel.send(ping)
+    if message.content.find("$spell") != -1:
+        content = message.content
+        callPhrase = "$spell "
+        query = content.partition(callPhrase)[2]
+        wordspeller.wordspeller.spellword(query)
 
 client.run(get_token())
