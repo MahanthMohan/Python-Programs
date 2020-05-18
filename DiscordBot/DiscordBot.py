@@ -2,7 +2,8 @@ import discord.ext.commands
 from discord.ext.commands import Bot
 import wikipedia
 import requests
-from DiscordBot import wordspeller
+from gtts import gTTS
+from playsound import playsound as ps
 
 def get_token():
     f = open("token.txt", "r")
@@ -16,6 +17,13 @@ bot = Bot(command_prefix='$')
 async def member_join(member):
         for channel in member.server.channels:
                 await client.send_message("Welcome to the server {}".format(member.mention))
+
+def spellword(self, word):
+    word_length = len(word)
+    start_index = start_index
+    tts = gTTS(word)
+    tts.save('audio.mp3')
+    ps("audio.mp3")  
 
 @client.event
 async def on_message(message):
@@ -104,7 +112,6 @@ async def on_message(message):
     if message.content.find("$spell") != -1:
         content = message.content
         callPhrase = "$spell "
-        query = content.partition(callPhrase)[2]
-        wordspeller.wordspeller.spellword(query)        
+        query = content.partition(callPhrase)[2]     
 
 client.run(get_token())
