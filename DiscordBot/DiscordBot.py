@@ -18,7 +18,7 @@ async def member_join(member):
         for channel in member.server.channels:
                 await client.send_message("Welcome to the server {}".format(member.mention))
 
-def spellword(self, word):
+def spellword(word):
     word_length = len(word)
     start_index = start_index
     tts = gTTS(word)
@@ -112,6 +112,7 @@ async def on_message(message):
     if message.content.find("$spell") != -1:
         content = message.content
         callPhrase = "$spell "
-        query = content.partition(callPhrase)[2]     
+        query = content.partition(callPhrase)[2]
+        spellword(query)     
 
 client.run(get_token())
