@@ -18,6 +18,9 @@ async def on_message(message):
     if message.content.find("$hello") != -1:
         await message.channel.send("Hello!")
 
+    if message.content.find("$say") != -1:
+            await message.channel.send(message.content)
+
     if message.content.find("$shrug") != -1:
         await message.channel.send('¯\_(ツ)_/¯')
 
@@ -68,8 +71,18 @@ async def on_message(message):
             translated_text = return_data['text']
             await message.channel.send(translated_text)
 
-    if message.content.find("$say") != -1:
-            await message.channel.send(message.content)
+    if message.content.find("$weather") != -1:
+        content = message.content
+        content_list = content.split(" ")
+        city = content_list[1]
+        request_url = 'http://api.openweathermap.org/data/2.5/weather?appid=a82ce5d667628af3985ec52d8a1a91eb&q={}'.format(city)
+        return_data = requests.get(request_url).json()
+        relevant_data = return_data['main']
+        Current_temp = 'The Current temperature is ' + str(int((relevant_data['temp']) - 273)) + " degrees Celsius"
+        Maximum_temp = 'The Maximum temperature is ' + str(int(relevant_data['temp_max'] - 273)) + " degrees Celsius"
+        Minimum_temp = 'The Minimum temperature is ' + str(int(relevant_data['temp_min'] - 273)) + " degrees Celsius"
+        Humidity = 'The Humidity is ' + str((relevant_data['humidity']))
+        await message.channel.send(Current_temp, Maximum_temp, Minimum_temp, Humidity)
 
     if message.content.find("$terminate") != -1:
             await message.channel.send("***The bot was terminated***")
