@@ -69,7 +69,7 @@ async def on_message(message):
             await message.channel.send(translated_text)
 
     if message.content.find("$terminate") != -1:
-            await message.channel.send("The bot was terminated")
+            await message.channel.send("***The bot was terminated***")
             await client.close()
 
 client.run(token)
