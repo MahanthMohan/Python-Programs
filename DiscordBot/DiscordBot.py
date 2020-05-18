@@ -18,13 +18,6 @@ async def member_join(member):
         for channel in member.server.channels:
                 await client.send_message("Welcome to the server {}".format(member.mention))
 
-def spellword(word):
-    word_length = len(word)
-    start_index = start_index
-    tts = gTTS(word)
-    tts.save('audio.mp3')
-    ps("audio.mp3")  
-
 @client.event
 async def on_message(message):
 
@@ -107,12 +100,6 @@ async def on_message(message):
 
     if message.content.find("$terminate") != -1:
             await message.channel.send("***The bot was terminated***")
-            await client.close()
-
-    if message.content.find("$spell") != -1:
-        content = message.content
-        callPhrase = "$spell "
-        query = content.partition(callPhrase)[2]
-        spellword(query)     
+            await client.close()   
 
 client.run(get_token())
