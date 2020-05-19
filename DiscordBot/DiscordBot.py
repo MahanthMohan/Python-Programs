@@ -1,5 +1,6 @@
 import discord.ext.commands
 from discord.ext.commands import Bot
+import discord
 import wikipedia
 import requests
 
@@ -12,18 +13,19 @@ client = discord.Client()
 bot = Bot(command_prefix='$')
 
 @bot.event
-async def join(ctx, message):
-    if message.content.find("$join") != -1:
-        server = ctx.message.server
-        channel = ctx.message.author.voice.voice.channel
-        await client.join_voice_channel(channel)
+async def join(message):
+        if message.content.find("$join"):
+                channel = message.author.voice.voice.channel
+                await client.join_voice_channel(channel)
+                await message.channel.send("**You have successfully joined the voice channel**")
 
 @bot.event
-async def leave(ctx, message):
-    if message.content.find("$leave") != -1:
-        server = ctx.message.server
-        voice_client = client.voice_client_in(server)
-        await voice_client.disconnect()
+async def leave(message):
+        if message.content.find("$leave"):
+                server = message.server
+                voice_client = client.voice_client_in(server)
+                await voice_client.disconnect()
+                await message.channel.send("**You have successfully left the voice channel**")
 
 @client.event
 async def member_join(member):
