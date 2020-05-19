@@ -2,8 +2,6 @@ import discord.ext.commands
 from discord.ext.commands import Bot
 import wikipedia
 import requests
-from gtts import gTTS
-from playsound import playsound as ps
 
 def get_token():
     f = open("token.txt", "r")
@@ -12,6 +10,20 @@ def get_token():
 
 client = discord.Client()
 bot = Bot(command_prefix='$')
+
+@bot.event
+async def join(ctx, message):
+    if message.content.find("$join") != -1:
+        server = ctx.message.server
+        channel = ctx.message.author.voice.voice.channel
+        await client.join_voice_channel(channel)
+
+@bot.event
+async def leave(ctx, message):
+    if message.content.find("$leave") != -1:
+        server = ctx.message.server
+        voice_client = client.voice_client_in(server)
+        await voice_client.disconnect()
 
 @client.event
 async def member_join(member):
