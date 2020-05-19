@@ -10,14 +10,20 @@ def get_token():
 
 bot = commands.Bot(command_prefix='$')
 
-@bot.command()
+@bot.command(pass_context = True)
 async def join(ctx):
-    channel = ctx.author.voice.channel
-    await channel.connect()
+    channel = ctx.author.voice.voice_channel
+    await bot.join_voice_channel(channel)
 
-@bot.command()
+@bot.command(pass_context = True)
 async def leave(ctx):
-    await ctx.voice_client.disconnect()
+    server = ctx.message.server
+    voice_client = bot.voice_client_int(server)
+    await voice_client.disconnect()
+
+@bot.command
+async def purge(ctx, amount = 10):
+        await ctx.channel.purge(limit = amount)
 
 @bot.event
 async def member_join(member):
