@@ -8,25 +8,23 @@ def get_token():
     token = f.read().replace("bot_token: ","")
     return token
 
-client = commands.Bot(command_prefix='$')
+bot = commands.Bot(command_prefix='$')
 
-@client.command(pass_context = True)
+@bot.command()
 async def join(ctx):
-        channel = ctx.message.author.voice.voice_channel
-        await client.join_voice_channel(channel)
+    channel = ctx.author.voice.channel
+    await channel.connect()
 
-@client.command(pass_context = True)
+@bot.command()
 async def leave(ctx):
-        server = ctx.message.server
-        voice_client = client.voice_client_in(server)
-        await voice_client.disconnect()
+    await ctx.voice_client.disconnect()
 
-@client.event
+@bot.event
 async def member_join(member):
         for channel in member.server.channels:
-                await client.send_message("Welcome to the server {}".format(member.mention))
+                await bot.send_message("Welcome to the server {}".format(member.mention))
 
-@client.event
+@bot.event
 async def on_message(message):
 
     if message.content.find("$help") != -1:
@@ -65,11 +63,11 @@ async def on_message(message):
             await message.channel.send(return_content)
 
     if message.content.find("$users") != -1:
-            id = client.get_guild(689260912200122383)
+            id = bot.get_guild(689260912200122383)
             await message.channel.send("# of Members are {}".format(id.member_count))
 
     if message.content.find("$server") != -1:
-            ch = client.get_guild(689260912200122383)
+            ch = bot.get_guild(689260912200122383)
             await message.channel.send("The server name is " + str(ch))
 
     if message.content.find("$channel") != -1:
@@ -77,7 +75,7 @@ async def on_message(message):
             await message.channel.send("This message was sent to the " + str(ch) + " channel")
 
     if message.content.find("$names") != -1:
-            await message.channel.send(str(client.get_all_members()))
+            await message.channel.send(str(bot.get_all_members()))
 
     if message.content.find("$author") != -1:
             author = message.author
@@ -108,6 +106,6 @@ async def on_message(message):
 
     if message.content.find("$terminate") != -1:
             await message.channel.send("***The bot was terminated***")
-            await client.close()   
+            await bot.close()   
 
-client.run(get_token())
+bot.run(get_token())
