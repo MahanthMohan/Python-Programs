@@ -1,4 +1,5 @@
 import discord
+import youtube_dl
 from discord.ext import commands
 
 def get_token():
@@ -17,4 +18,11 @@ async def join(ctx):
 async def leave(ctx):
     await ctx.voice_client.disconnect()
 
+@bot.command()
+async def play(ctx, url):
+    server = ctx.message.server
+    voice_client = bot.voice_client_in(server)
+    player = await voice_client.create_ytdl_player(url)
+    player.start()
+    
 bot.run(get_token())
