@@ -1,36 +1,35 @@
 import discord
 from discord.ext import commands
+from discord.voice_client import VoiceClient
 import wikipedia
 import requests
 
 def get_token():
     f = open("token.txt", "r")
-    token = f.read().replace("bot_token: ","")
+    token = f.read().replace("client_token: ","")
     return token
 
-bot = commands.Bot(command_prefix='$')
+client = commands.client(command_prefix='$')
 
-@bot.command(pass_context = True)
+@client.command()
 async def join(ctx):
-    channel = ctx.author.voice.voice_channel
-    await bot.join_voice_channel(channel)
+    channel = ctx.author.voice.channel
+    await channel.connect()
 
-@bot.command(pass_context = True)
+@client.command()
 async def leave(ctx):
-    server = ctx.message.server
-    voice_client = bot.voice_client_int(server)
-    await voice_client.disconnect()
+    await ctx.voice_client.disconnect()
 
-@bot.command
+@client.command
 async def purge(ctx, amount = 10):
         await ctx.channel.purge(limit = amount)
 
-@bot.event
+@client.event
 async def member_join(member):
         for channel in member.server.channels:
-                await bot.send_message("Welcome to the server {}".format(member.mention))
+                await client.send_message("Welcome to the server {}".format(member.mention))
 
-@bot.event
+@client.event
 async def on_message(message):
 
     if message.content.find("$help") != -1:
@@ -53,7 +52,7 @@ async def on_message(message):
         await message.channel.send("Great!")
 
     if message.content.find("$who are you?") != -1:
-        await message.channel.send("I am a bot, but consider me your friend!")
+        await message.channel.send("I am a client, but consider me your friend!")
 
     if message.content.find("$thank you") != -1:
         await message.channel.send("Happy to help, as always!")
@@ -69,11 +68,11 @@ async def on_message(message):
             await message.channel.send(return_content)
 
     if message.content.find("$users") != -1:
-            id = bot.get_guild(689260912200122383)
+            id = client.get_guild(689260912200122383)
             await message.channel.send("# of Members are {}".format(id.member_count))
 
     if message.content.find("$server") != -1:
-            ch = bot.get_guild(689260912200122383)
+            ch = client.get_guild(689260912200122383)
             await message.channel.send("The server name is " + str(ch))
 
     if message.content.find("$channel") != -1:
@@ -81,7 +80,7 @@ async def on_message(message):
             await message.channel.send("This message was sent to the " + str(ch) + " channel")
 
     if message.content.find("$names") != -1:
-            await message.channel.send(str(bot.get_all_members()))
+            await message.channel.send(str(client.get_all_members()))
 
     if message.content.find("$author") != -1:
             author = message.author
@@ -111,7 +110,7 @@ async def on_message(message):
         await message.channel.send(Minimum_temp)
 
     if message.content.find("$terminate") != -1:
-            await message.channel.send("***The bot was terminated***")
-            await bot.close()   
+            await message.channel.send("***The client was terminated***")
+            await client.close()   
 
-bot.run(get_token())
+client.run(get_token())
