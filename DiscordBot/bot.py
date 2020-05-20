@@ -10,6 +10,11 @@ def get_token():
     token = f.read().replace("bot_token: ","")
     return token
 
+def load_responses():
+    with open("intents.json") as file:
+        intents = json.load(file)['intents']
+        return intents
+
 bot = commands.Bot(command_prefix='$')
 
 @bot.event
@@ -24,7 +29,10 @@ async def on_message(message):
         await message.channel.send("Common commands include Hello, Shrug, Search, Channel, and Users")
 
     if message.content.find("$hello") != -1:
-        await message.channel.send("Hello!")
+        response_list = load_responses()[1]['responses']
+        leng = len(response_list)
+        response = str(response_list[random.randint(0,leng)])
+        await message.channel.send(response)
 
     if message.content.find("$say") != -1:
             content = message.content
@@ -36,16 +44,28 @@ async def on_message(message):
         await message.channel.send('¯\_(ツ)_/¯')
 
     if message.content.find("$how are you?") != -1:
-        await message.channel.send("Great!")
+        response_list = load_responses()[2]['responses']
+        leng = len(response_list)
+        response = str(response_list[random.randint(0,leng)])
+        await message.channel.send(response)
 
     if message.content.find("$who are you?") != -1:
-        await message.channel.send("I am a bot, but consider me your friend!")
+        response_list = load_responses()[3]['responses']
+        leng = len(response_list)
+        response = str(response_list[random.randint(0,leng)])
+        await message.channel.send(response)
 
     if message.content.find("$thank you") != -1:
-        await message.channel.send("Happy to help, as always!")
+        response_list = load_responses()[4]['responses']
+        leng = len(response_list)
+        response = str(response_list[random.randint(0,leng)])
+        await message.channel.send(response)
 
     if message.content.find("$what do you eat?") != -1:
-            await message.channel.send("Loads of data!")
+        response_list = load_responses()[5]['responses']
+        leng = len(response_list)
+        response = str(response_list[random.randint(0,leng)])
+        await message.channel.send(response)
 
     if message.content.find("$search") != -1:
             search = message.content
