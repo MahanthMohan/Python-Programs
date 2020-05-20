@@ -1,0 +1,18 @@
+{"intents": [
+        {"tag": "hello",
+         "responses": ["Hello!", "Good to see you again!", "Hi there, how can I help?","Nice to see you!","Hola! Buenas dias"]
+        },
+        {"tag": "How are you?",
+         "responses": ["I am doing good", "Doing fine!", "Awesome!", "Great!", "All the better you asked","Fine!"]
+        },
+        {"tag": "Who are you?",
+         "responses": ["I am a bot", "1I was created by a human", "I am a mini cyborg","I am not so different from you!","I am your best friend"]
+        },
+        {"tag": "Thank you!",
+         "responses": ["No problem!", "You're welcome", "Its fine","Glad to hear that from you!", "I aim to please", "No problemo!"]
+        },
+        {"tag": "Eat",
+         "responses": ["Loads of data!", "I chew questions and spit out answers", "Data, what else!", "I am not hungry rn!"]
+        }
+   ]
+}

@@ -2,6 +2,8 @@ import discord
 from discord.ext import commands
 import wikipedia
 import requests
+import random
+import json
 
 def get_token():
     f = open("token.txt", "r")
