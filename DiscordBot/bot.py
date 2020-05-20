@@ -10,10 +10,14 @@ def get_token():
     token = f.read().replace("bot_token: ","")
     return token
 
-def load_responses():
+def load_responses(response_number):
+    response_number = int(response_number)
     with open("intents.json") as file:
         intents = json.load(file)['intents']
-        return intents
+        response_list = load_responses()[response_number]['responses']
+        leng = len(response_list)
+        response = str(response_list[random.randint(0,leng)])
+        return response
 
 bot = commands.Bot(command_prefix='$')
 
@@ -29,10 +33,7 @@ async def on_message(message):
         await message.channel.send("Common commands include Hello, Shrug, Search, Channel, and Users")
 
     if message.content.find("$hello") != -1:
-        response_list = load_responses()[1]['responses']
-        leng = len(response_list)
-        response = str(response_list[random.randint(0,leng)])
-        await message.channel.send(response)
+        await message.channel.send(load_responses(1))
 
     if message.content.find("$say") != -1:
             content = message.content
@@ -44,28 +45,16 @@ async def on_message(message):
         await message.channel.send('¯\_(ツ)_/¯')
 
     if message.content.find("$how are you?") != -1:
-        response_list = load_responses()[2]['responses']
-        leng = len(response_list)
-        response = str(response_list[random.randint(0,leng)])
-        await message.channel.send(response)
+        await message.channel.send(load_responses(2))
 
     if message.content.find("$who are you?") != -1:
-        response_list = load_responses()[3]['responses']
-        leng = len(response_list)
-        response = str(response_list[random.randint(0,leng)])
-        await message.channel.send(response)
+        await message.channel.send(load_responses(3))
 
     if message.content.find("$thank you") != -1:
-        response_list = load_responses()[4]['responses']
-        leng = len(response_list)
-        response = str(response_list[random.randint(0,leng)])
-        await message.channel.send(response)
+        await message.channel.send(load_responses(4))
 
     if message.content.find("$what do you eat?") != -1:
-        response_list = load_responses()[5]['responses']
-        leng = len(response_list)
-        response = str(response_list[random.randint(0,leng)])
-        await message.channel.send(response)
+        await message.channel.send(load_responses(5))
 
     if message.content.find("$search") != -1:
             search = message.content
@@ -75,11 +64,11 @@ async def on_message(message):
             await message.channel.send(return_content)
 
     if message.content.find("$users") != -1:
-            id = bot.get_guild(689260912200122383)
+            id = bot.get_guild(ctx.message.server)
             await message.channel.send("# of Members are {}".format(id.member_count))
 
     if message.content.find("$server") != -1:
-            ch = bot.get_guild(689260912200122383)
+            ch = bot.get_guild(ctx.message.server)
             await message.channel.send("The server name is " + str(ch))
 
     if message.content.find("$channel") != -1:
@@ -121,6 +110,6 @@ async def on_message(message):
 
     if message.content.find("$terminate") != -1:
             await message.channel.send("***The bot was terminated***")
-            await bot.close()   
+            await bot.close() 
 
 bot.run(get_token())
