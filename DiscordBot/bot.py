@@ -63,11 +63,11 @@ async def on_message(message):
             await message.channel.send(return_content)
 
     if message.content.find("$users") != -1:
-            id = bot.get_guild(ctx.message.server)
+            id = bot.get_guild(689260912200122383)
             await message.channel.send("# of Members are {}".format(id.member_count))
 
     if message.content.find("$server") != -1:
-            ch = bot.get_guild(ctx.message.server)
+            ch = bot.get_guild(689260912200122383)
             await message.channel.send("The server name is " + str(ch))
 
     if message.content.find("$channel") != -1:
