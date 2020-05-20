@@ -6,14 +6,11 @@ import requests
 
 def get_token():
     f = open("token.txt", "r")
-    token = f.read().replace("client_token: ","")
+    token = f.read().replace("bot_token: ","")
     return token
 
 client = commands.Bot(command_prefix='$')
 
-@client.event
-async def on_ready():
-        print("client online")
 @client.command()
 async def join(ctx):
     channel = ctx.author.voice.channel
@@ -22,10 +19,6 @@ async def join(ctx):
 @client.command()
 async def leave(ctx):
     await ctx.voice_client.disconnect()
-
-@client.command
-async def purge(ctx, amount = 10):
-        await ctx.channel.purge(limit = amount)
 
 @client.event
 async def member_join(member):
@@ -111,6 +104,12 @@ async def on_message(message):
         await message.channel.send(Current_temp)
         await message.channel.send(Maximum_temp)
         await message.channel.send(Minimum_temp)
+
+    if message.content.find("$purge") != -1:
+        content = message.content
+        content_list = content.split("")
+        amount = content_list[1]
+        await message.channel.purge(limit = amount)
 
     if message.content.find("$terminate") != -1:
             await message.channel.send("***The client was terminated***")
