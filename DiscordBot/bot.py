@@ -76,9 +76,6 @@ async def on_message(message):
             ch = message.channel
             await message.channel.send("This message was sent to the " + str(ch) + " channel")
 
-    if message.content.find("$names") != -1:
-            await message.channel.send(str(client.get_all_members()))
-
     if message.content.find("$author") != -1:
             author = message.author
             await message.channel.send("the author of this message is " + str(author))
