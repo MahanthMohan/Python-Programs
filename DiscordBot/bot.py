@@ -32,7 +32,7 @@ async def on_message(message):
         await message.channel.send("Common commands include Hello, Shrug, Search, Channel, and Users")
 
     if message.content.find("$hello") != -1:
-        await message.channel.send(responses(1))
+        await message.channel.send(responses(0))
 
     if message.content.find("$say") != -1:
             content = message.content
@@ -44,16 +44,16 @@ async def on_message(message):
         await message.channel.send('¯\_(ツ)_/¯')
 
     if message.content.find("$how are you?") != -1:
-        await message.channel.send(responses(2))
+        await message.channel.send(responses(1))
 
     if message.content.find("$who are you?") != -1:
-        await message.channel.send(responses(3))
+        await message.channel.send(responses(2))
 
     if message.content.find("$thank you") != -1:
-        await message.channel.send(responses(4))
+        await message.channel.send(responses(3))
 
     if message.content.find("$what do you eat?") != -1:
-        await message.channel.send(responses(5))
+        await message.channel.send(responses(4))
 
     if message.content.find("$search") != -1:
             search = message.content
