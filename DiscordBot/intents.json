@@ -3,7 +3,7 @@
          "responses": ["Hello!", "Good to see you again!", "Hi there, how can I help?","Nice to see you!","Hola! Buenas dias","Welcome","Bonjour","Namaste","I can see you!"]
         },
         {"tag": "How are you?",
-         "responses": ["I am doing good", "Doing fine!", "Awesome!", "Thanks for asking", "Great!", "All the better you asked","Fine!","Good!", "Okay", "Not so great", "Glad to help"]
+         "responses": ["I am doing good", "Doing fine!", "Awesome!", "Thanks for asking", "Great!", "All the better you asked","Fine!","Good!", "Okay", "Not so great", "Glad enough!"]
         },
         {"tag": "Who are you?",
          "responses": ["I am a bot", "I was created by a human", "I am a mini cyborg", "I am not so different from you!", "I am your best friend", "Think of me as a human!", "I was created by Mahanth", "Check the Discord API!"]
