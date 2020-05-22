@@ -1,0 +1,6 @@
+Requirements for running Instagram bot:
+
+1. pip install webdrivermanager
+2. pip install selenium
+3. Make sure these two packages are in the python path folder
+4. You can successfully execute the code now!

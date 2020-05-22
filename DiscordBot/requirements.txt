@@ -1,0 +1,10 @@
+Requirements for running Discord bot:
+
+1. pip install discord (Discord.py python package)
+2. pip install requests (Send API request and collect response)
+3. pip install wikipedia (For wikipedia search and summary)
+4. Check for JSON and random (SHould be in the python installation folder by default) 
+5. Create an application in the Discord Developer Portal (https://discord.com/developers/)
+6. Add a bot and name it
+7. Run the code with your bot token pasted in token.txt file for token security
+8. You should be able to see a fully working chatbot in your server!
