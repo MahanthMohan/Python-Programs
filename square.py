@@ -1,6 +1,7 @@
 import math
 
 class square:
+    
     def collectradius(self):
         radius = float(input("Enter the radius of the circle: "))
         return radius

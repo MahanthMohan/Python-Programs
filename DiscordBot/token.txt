@@ -1,1 +1,1 @@
-bot_token: NzExOTg5MTYwNzkzMzQyMDI0.XsV8JQ.j4J2oo0lo9_5mi3vobLbGVLQqPQ
+bot_token: NzExOTg5MTYwNzkzMzQyMDI0.XsWm2Q.ayf_-vXu2_PM_v6wyaM8-V15c8c
