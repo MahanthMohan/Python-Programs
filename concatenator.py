@@ -1,10 +1,16 @@
-def concatenate(a,b):
-    if (type(a) and type(b) == "<class 'int'>"):
-        res = str(a) + str(b)
-        return res
+class concatenator:
 
-    else:
-        res = int(a) + int(b)
-        return res
+    def concatenate(self,a,b):
+        self.a = a
+        self.b = b
+        if (type(a) and type(b) == "<class 'int'>"):
+            res = str(a) + str(b)
+            return res
 
-print(concatenate(int(12),int(13)))
+        else:
+            res = int(a) + int(b)
+            return res
+
+concatenator = concatenator()
+
+print(concatenator.concatenate(int(12),int(13)))
