@@ -8,7 +8,7 @@ class separator:
             data_type = type(list[i])
             if(data_type is int):
                 lst.append(list[i])
-                return lst
+        return lst
         
         
 separator = separator()
