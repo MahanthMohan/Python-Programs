@@ -1,15 +1,18 @@
-import math
 
 class separator:
 
     def return_int(self, list):
-        self.list = list
-        data_types = [type(element) for element in list]
-        for element in data_types:
-            if(element == "<class 'int'>"):
-                return list
-
+        self.list = list   
+        lst = []
+        for i in range(0, len(list)):
+            data_type = type(list[i])
+            if(data_type is int):
+                lst.append(list[i])
+                return lst
+        
+        
 separator = separator()
 
 sample = ["foo", "toom", "apple", 123, 457]
 print(separator.return_int(sample))
+
