@@ -1,3 +1,4 @@
+
 class listreplace:
 
     def replace(self):

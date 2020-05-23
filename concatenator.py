@@ -1,3 +1,4 @@
+
 class concatenator:
 
     def concatenate(self,a,b):

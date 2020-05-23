@@ -10,7 +10,6 @@ class MathSolver:
     def calculate(self, operation, expression):
         self.operation = operation
         self.expression = expression
-        API_URL = "https://newton.now.sh/operation/expression"
         request_URL = "https://newton.now.sh/{}/{}".format(operation,expression)
         return_data = requests.get(request_URL).json()
         result = return_data['result']

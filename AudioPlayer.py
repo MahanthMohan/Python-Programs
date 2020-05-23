@@ -1,18 +1,25 @@
 import os
 from playsound import playsound
 
-def getFileName(path):
-    trimmed_path = path.replace("C:","")
-    file_name = os.path.basename(trimmed_path)
-    return file_name
+class AudioPlayer:
+
+    def getFileName(self,path):
+        self.path = path
+        trimmed_path = path.replace("C:","")
+        file_name = os.path.basename(trimmed_path)
+        return file_name
 
 
-def playaudio(file_name,repeat):
-    initial = 0
-    while(initial < repeat):
-        playsound(path)
-        initial += 1
+    def playaudio(self,file_name,repeat):
+        self.file_name = file_name
+        self.repeat = repeat
+        initial = 0
+        while(initial < repeat):
+            playsound(path)
+            initial += 1
+
+AudioPlayer = AudioPlayer()
 
 path = input("Name/Path of the audio file: ")
 repeat = int(input("Number of times: "))
-playaudio(getFileName(path), repeat)
+AudioPlayer.playaudio(AudioPlayer.getFileName(path), repeat)

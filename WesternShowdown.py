@@ -1,3 +1,4 @@
+
 class WesternShowdown:
 
   def showdown(self, p1, p2):

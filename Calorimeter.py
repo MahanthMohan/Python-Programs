@@ -1,3 +1,4 @@
+
 class Calorimeter:
 
     def enthalpy(self, products, reactants):

@@ -3,7 +3,6 @@ import tkinter as tk
 root = tk.Tk()
 
 city = input("Enter the city name: ")
-API_URL = 'http://api.openweathermap.org/data/2.5/weather?appid=a82ce5d667628af3985ec52d8a1a91eb'
 request_url = 'http://api.openweathermap.org/data/2.5/weather?appid=a82ce5d667628af3985ec52d8a1a91eb&q={}'.format(city)
 # This is the link that has two attributes: Your api id and the location request
 return_data = requests.get(request_url).json()
