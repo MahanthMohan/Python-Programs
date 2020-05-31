@@ -12,19 +12,19 @@ class Instabot:
         sleep(2)
         # finds the username and password elements by full xpath
         # username
-        bot.driver.find_element_by_xpath("//input[@name=\"username\"]").send_keys(username)
+        bot.driver.find_element_by_name("username").send_keys(username)
         # password
-        bot.driver.find_element_by_xpath("//input[@name=\"password\"]").send_keys(pw)
+        bot.driver.find_element_by_name("password").send_keys(pw)
         # submit username and password
-        bot.driver.find_element_by_xpath('/html/body/div[1]/section/main/div/article/div/div[1]/div/form/div[4]').click()
+        bot.driver.find_element_by_xpath("/html/body/div[1]/section/main/div/article/div/div[1]/div/form/div[4]/button/div").click()
         sleep(3)
         # Click on 'Not Now'
         try:
             bot.driver.find_element_by_xpath('/html/body/div[4]/div/div/div[3]/button[2]').click()
         except:
-            bot.driver.find_element_by_xpath('//*[@id="react-root"]/section/main/div/div/div/div/button').click()
+            bot.driver.find_element_by_xpath('/html/body/div[1]/section/main/div/div/div/div/button').click()
             
-        bot.driver.find_element_by_xpath('/html/body/div[4]/div/div/div[3]/button[2]').click()
+        bot.driver.find_element_by_css_selector('body > div.RnEpo.Yx5HN > div > div > div.mt3GC > button.aOOlW.HoLwm').click()
         sleep(3)
 
     def getFollowers(bot):
@@ -34,6 +34,7 @@ class Instabot:
         follower_box.click()
         sleep(3)
         print("You have " + follower_box.text)
+        sugs = bot.driver.find_element_by_xpath()
 
     
     def getFollowing(bot):
@@ -44,18 +45,9 @@ class Instabot:
         sleep(3)
         print("You have " + following_box.text + " you")
 
-    def ViewFeed(bot):
-        bot.driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
 
-    def ViewPosts(bot):
-        bot.driver.find_element_by_xpath("/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[5]/a/img").click()
-        sleep(3)
-        bot.driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
-
-username = input("Enter your username: ")
-pw = input("Enter your password: ")
-bot = Instabot(username, pw)
-command = input("What do you want to do - get followers, get following, view feed, view posts?: " + "\n")
+bot = Instabot("momomahanth", "dov55789")
+command = input("What do you want to do - get followers, get following?: " + "\n")
 
 if (command == "get followers"):
     bot.getFollowers()
@@ -63,9 +55,4 @@ if (command == "get followers"):
 elif (command == "get following"):
     bot.getFollowing()
 
-elif (command == "view feed"):
-    bot.ViewFeed()
-
-elif (command == "view posts"):
-    bot.ViewPosts()
 
