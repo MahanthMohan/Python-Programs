@@ -19,6 +19,11 @@ class Instabot:
         bot.driver.find_element_by_xpath('/html/body/div[1]/section/main/div/article/div/div[1]/div/form/div[4]').click()
         sleep(3)
         # Click on 'Not Now'
+        try:
+            bot.driver.find_element_by_xpath('/html/body/div[4]/div/div/div[3]/button[2]').click()
+        except:
+            bot.driver.find_element_by_xpath('//*[@id="react-root"]/section/main/div/div/div/div/button').click()
+            
         bot.driver.find_element_by_xpath('/html/body/div[4]/div/div/div[3]/button[2]').click()
         sleep(3)
 
@@ -28,7 +33,6 @@ class Instabot:
         follower_box = bot.driver.find_element_by_xpath("//a[contains(@href, '/{}/{}/')]".format(bot.username,"followers"))
         follower_box.click()
         sleep(3)
-        #bot.driver.execute_script("{}.scrollTo(0,{}.scrollHeight)".format(follower_box,follower_box))
         print("You have " + follower_box.text)
 
     
@@ -38,7 +42,6 @@ class Instabot:
         following_box = bot.driver.find_element_by_xpath("//a[contains(@href, '/{}/{}/')]".format(bot.username,"following"))
         following_box.click()
         sleep(3)
-        #bot.driver.execute_script("{}.scrollTo(0,{}.scrollHeight)".format(following_box,following_box))
         print("You have " + following_box.text + " you")
 
     def ViewFeed(bot):
