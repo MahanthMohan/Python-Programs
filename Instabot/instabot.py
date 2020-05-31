@@ -28,7 +28,7 @@ class Instabot:
         sleep(3)
 
     def getFollowers(bot):
-        bot.driver.find_element_by_xpath("/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[5]/span/img").click()
+        bot.driver.find_element_by_xpath("/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[5]/a/img").click()
         sleep(3)
         follower_box = bot.driver.find_element_by_xpath("//a[contains(@href, '/{}/{}/')]".format(bot.username,"followers"))
         follower_box.click()
@@ -37,7 +37,7 @@ class Instabot:
 
     
     def getFollowing(bot):
-        bot.driver.find_element_by_xpath("/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[5]/span/img").click()
+        bot.driver.find_element_by_xpath("/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[5]/a/img").click()
         sleep(3)
         following_box = bot.driver.find_element_by_xpath("//a[contains(@href, '/{}/{}/')]".format(bot.username,"following"))
         following_box.click()
@@ -48,7 +48,7 @@ class Instabot:
         bot.driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
 
     def ViewPosts(bot):
-        bot.driver.find_element_by_xpath("/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[5]/span/img").click()
+        bot.driver.find_element_by_xpath("/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[5]/a/img").click()
         sleep(3)
         bot.driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
 
