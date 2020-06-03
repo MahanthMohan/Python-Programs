@@ -22,21 +22,24 @@ class Instabot:
         bot.driver.find_element_by_css_selector("#react-root > section > main > div > article > div > div:nth-child(1) > div > form > div:nth-child(4) > button > div").click()
         sleep(3)
         # Click on 'Not Now'
-        try:
+        try: 
             bot.driver.find_element_by_css_selector('body > div.RnEpo.Yx5HN > div > div > div.mt3GC > button.aOOlW.HoLwm').click()
         except:     
             bot.driver.find_element_by_css_selector('#react-root > section > main > div > div > div > div > button').click()
             
         bot.driver.find_element_by_css_selector('body > div.RnEpo.Yx5HN > div > div > div.mt3GC > button.aOOlW.HoLwm').click()
-        sleep(3)
+        sleep(2)
 
     def followByUsername(bot,username_list):
         bot.username_list = username_list
         index = 0
-        while (index <= len(username_list)):
+        while (index < len(username_list)):
             bot.driver.get("https://www.instagram.com/{}/".format(username_list[index]))
             # click follow button
-            follow_button = bot.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > div.nZSzR > div.Igw0E.IwRSH.eGOV_._4EzTm > span > span.vBF20._1OSdk > button")
+            try:
+                follow_button = bot.driver.find_element_by_xpath("/html/body/div[1]/section/main/div/header/section/div[1]/button")
+            except:
+                follow_button = bot.driver.find_element_by_xpath("/html/body/div[1]/section/main/div/header/section/div[1]/div[1]/span/span[1]/button")
             follow_button.click()
             index = index + 1
 
@@ -44,51 +47,45 @@ class Instabot:
     def UnfollowByUsername(bot,username_list):
         bot.username_list = username_list
         index = 0
-        while (index <= len(username_list)):
+        while (index < len(username_list)):
             bot.driver.get("https://www.instagram.com/{}/".format(username_list[index]))
-            follow_button = bot.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > div.nZSzR > div.Igw0E.IwRSH.eGOV_._4EzTm > span > span.vBF20._1OSdk > button")
-            if(follow_button.text != "Following"):
+            sleep(1.5)
+            try:
+                bot.driver.find_element_by_xpath("/html/body/div[1]/section/main/div/header/section/div[2]/div/span/span[1]/button")
+            except: 
+                follow_button = bot.driver.find_element_by_xpath("/html/body/div[1]/section/main/div/header/section/div[2]/div[2]/span/span[1]/button")
                 follow_button.click()
-                Unfollow_button = bot.driver.find_element_by_css_selector("body > div.RnEpo.Yx5HN > div > div > div.mt3GC > button.aOOlW.-Cab_")
-                Unfollow_button.click()
-            else:
-                print("User not followed")
-            index = index + 1
+                Unfollow_button = bot.driver.find_element_by_xpath("/html/body/div[4]/div/div/div[3]/button[1]")
+                Unfollow_button.click()  
+            index = index + 1 
 
-    def getFollowers(bot,username, max):
-        bot.username = username
-        bot.max = max
-        bot.driver.get("https://www.instagram.com/{}/".format(username))
-        sleep(2.5)
-        follower_button = bot.driver.find_element_by_css_selector("ul li a")
-        follower_button.click()
-        sleep(2)
-        user_links = bot.driver.find_element_by_css_selector('div[role=\'dialog\'] ul')
-        user_links.click()
-        leng = len(user_links.find_elements_by_css_selector('li'))
-        # The JavaScipt function scrolls the follower list down to collect the length, and then scrolls up to finds the elements' username attribute
-        actionChain = webdriver.ActionChains(bot.driver)
-        while (leng < max):
-            actionChain.key_down(Keys.SPACE).key_up(Keys.SPACE).perform()
+    def getFollowers(bot, username, max):
+            bot.driver.get('https://www.instagram.com/' + username)
+            followersLink = bot.driver.find_element_by_css_selector('ul li a')
+            followersLink.click()
+            sleep(2)
+            user_links = bot.driver.find_element_by_css_selector('div[role=\'dialog\'] ul')
             leng = len(user_links.find_elements_by_css_selector('li'))
-
-        followers = []
-        for user in user_links.find_elements_by_css_selector('li'):
-            username = user.find_element_by_css_selector('a').get_attribute("href")
-            followers.append(username)
-            if (len(followers) == max):
-                break
-        return followers
+        
+            user_links.click()
+            actionChain = webdriver.ActionChains(bot.driver)
+            while (leng < max):
+                actionChain.key_down(Keys.SPACE).key_up(Keys.SPACE).perform()
+                leng = len(user_links.find_elements_by_css_selector('li'))
+            
+            followers = []
+            for user in user_links.find_elements_by_css_selector('li'):
+                username= user.find_element_by_css_selector('a').get_attribute('href')
+                followers.append(username)
+                if (len(followers) == max):
+                    break
+            return followers
 
     def closeSession(bot):
-        sleep(1.5)
-        bot.driver.close()
-        print("**Session ended successfully**")
+            bot.driver.close()
+            print("***BOT TERMINATED***")
 
-
-username = input("Username: ")
-pw = input("Password: ")
-Instabot = Instabot(username, pw)
+Instabot = Instabot("username", "pw")
 Instabot.login()
-print(Instabot.getFollowers("momomahanth", 29))
+Instabot.UnfollowByUsername(['google','microsoft','apple'])
 Instabot.closeSession()
