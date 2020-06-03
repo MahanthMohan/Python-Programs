@@ -1,6 +1,7 @@
 from selenium import webdriver # A package for web automation
 from selenium.webdriver.common.keys import Keys
 from time import sleep # to make sure the bot "sleeps" well after a process
+import json
 
 # A class for Instagram Bot
 class Instabot:
@@ -19,7 +20,7 @@ class Instabot:
         # password
         bot.driver.find_element_by_name("password").send_keys(bot.pw)
         # submit username and password
-        bot.driver.find_element_by_css_selector("#react-root > section > main > div > article > div > div:nth-child(1) > div > form > div:nth-child(4) > button > div").click()
+        bot.driver.find_element_by_css_selector("#react-root > section > main > div > article > div > div:nth-child(1) > div > form > div:nth-child(4) > button").click()
         sleep(3)
         # Click on 'Not Now'
         try: 
@@ -36,10 +37,11 @@ class Instabot:
         while (index < len(username_list)):
             bot.driver.get("https://www.instagram.com/{}/".format(username_list[index]))
             # click follow button
+            sleep(2)
             try:
-                follow_button = bot.driver.find_element_by_xpath("/html/body/div[1]/section/main/div/header/section/div[1]/button")
+                follow_button = bot.driver.find_element_by_css_selector("button")
             except:
-                follow_button = bot.driver.find_element_by_xpath("/html/body/div[1]/section/main/div/header/section/div[1]/div[1]/span/span[1]/button")
+                follow_button = bot.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > div.nZSzR > button")
             follow_button.click()
             index = index + 1
 
@@ -49,17 +51,22 @@ class Instabot:
         index = 0
         while (index < len(username_list)):
             bot.driver.get("https://www.instagram.com/{}/".format(username_list[index]))
-            sleep(1.5)
+            sleep(2)
             try:
-                bot.driver.find_element_by_xpath("/html/body/div[1]/section/main/div/header/section/div[2]/div/span/span[1]/button")
-            except: 
-                follow_button = bot.driver.find_element_by_xpath("/html/body/div[1]/section/main/div/header/section/div[2]/div[2]/span/span[1]/button")
-                follow_button.click()
-                Unfollow_button = bot.driver.find_element_by_xpath("/html/body/div[4]/div/div/div[3]/button[1]")
+                bot.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > div.Y2E37 > div > span > span.vBF20._1OSdk > button")
+                bot.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > div.Y2E37 > button")
+            except:
+                try: 
+                    followed_button = bot.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > div.Y2E37 > div.Igw0E.IwRSH.eGOV_._4EzTm > span > span.vBF20._1OSdk > button")
+                except:
+                    followed_button = bot.driver.find_element_by_css_selector("#react-root > section > main > div > header > section > div.Y2E37 > button")
+                followed_button.click()
+                sleep(1)
+                Unfollow_button = bot.driver.find_element_by_css("body > div.RnEpo.Yx5HN > div > div > div.mt3GC > button.aOOlW.-Cab_")
                 Unfollow_button.click()  
             index = index + 1 
 
-    def getFollowers(bot, username, max):
+    def getFollowers(bot, username):
             bot.driver.get('https://www.instagram.com/' + username)
             followersLink = bot.driver.find_element_by_css_selector('ul li a')
             followersLink.click()
@@ -75,17 +82,25 @@ class Instabot:
             
             followers = []
             for user in user_links.find_elements_by_css_selector('li'):
-                username= user.find_element_by_css_selector('a').get_attribute('href')
+                username = user.find_element_by_css_selector('a').get_attribute('href')
                 followers.append(username)
-                if (len(followers) == max):
-                    break
             return followers
 
+    def writeData(bot, follower_list, following_list):
+        bot.follower_list = follower_list
+        bot.following_list = following_list
+        with open("IG_Data.json") as file:
+            data = json.load(file)['IG_Data']
+            followers = data[0]['data']
+            following = data[1]['data']
+            followers.append(follower_list)
+            following.append(following_list)
+
     def closeSession(bot):
-            bot.driver.close()
+            bot.closeBrowser()
             print("***BOT TERMINATED***")
 
 Instabot = Instabot("username", "pw")
 Instabot.login()
-Instabot.UnfollowByUsername(['google','microsoft','apple'])
+Instabot.followByUsername(['google','xyz','microsoft'])
 Instabot.closeSession()
