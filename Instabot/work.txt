@@ -1,0 +1,5 @@
+Best Methods:
+1. find_element_by_id()
+2. find_element_by_name()
+3. find_element_by_xpath()
+4. find_element_by_css_selector()
