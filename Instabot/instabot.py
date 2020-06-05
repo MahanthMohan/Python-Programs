@@ -57,24 +57,24 @@ class Instabot:
             Unfollow_button.click()  
             index = index + 1 
 
-    def getFollowers(bot, username):
+    def getFollowers(bot, username, max):
+            self.max = max
             bot.driver.get('https://www.instagram.com/' + username)
-            followersLink = bot.driver.find_element_by_css_selector('ul li a')
-            followersLink.click()
-            sleep(2)
+            followersLink = bot.driver.find_element_by_css_selector('ul li a').click()
+            sleep(1.5)
             user_links = bot.driver.find_element_by_css_selector('div[role=\'dialog\'] ul')
-            leng = len(user_links.find_elements_by_css_selector('li'))
-        
             user_links.click()
+
+            # Instantiate ActionChains, a module of Selenium WebDriver that automates key actions
             actionChain = webdriver.ActionChains(bot.driver)
-            while (leng < max):
+            leng = 0
+            for i in range (leng, max):
                 actionChain.key_down(Keys.SPACE).key_up(Keys.SPACE).perform()
-                leng = len(user_links.find_elements_by_css_selector('li'))
-            
+                usernamelist = user_links.find_elements_by_css_selector('li')
+                username = usernamelist.find_element_by_css_selector('a').get_attribute('href')
+
             followers = []
-            for user in user_links.find_elements_by_css_selector('li'):
-                username = user.find_element_by_css_selector('a').get_attribute('href')
-                followers.append(username)
+            followers.append(username)
             return followers
 
     def closeSession(bot):
