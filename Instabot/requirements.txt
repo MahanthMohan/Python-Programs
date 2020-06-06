@@ -1,8 +1,7 @@
 Requirements for running Instagram bot:
 
-1. pip install webdrivermanager
-2. pip install selenium
-3. Make sure these two packages are in the python path folder
-4. Continually check the Frontend (Web Browser) for any new changes, because xpath and css links might not work as expected
-5. You can now successfully execute the code for the bot
-6. I want to make more features like finding unfollowers, so if you want to contribute that would be great!
+1. pip install selenium
+2. Make sure the location/path of the webdriver is specified
+3. Continually check the Frontend (Web Browser) for any new changes, because xpath and css links might not work as expected
+4. You can now successfully execute the code for the bot
+5. As I want to develop more features like finding unfollowers, any contribution will help people use this to grow in popularity instead of using third party apps that steal data and eventually lead to permanent account bans
