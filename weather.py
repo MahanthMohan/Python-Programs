@@ -10,6 +10,13 @@ def DisplayWeather():
     WL2.place(x = '600', y = '285')
     WL3.place(x = '600', y = '360')
 
+# A method that collects the user location from the GUI
+def getLocation():
+   tk.Label(root, text="City").grid(row = 0)
+   e = tk.Entry(root)
+   location = str(e.get())
+   return location
+
 # Creates a canvas
 Canvas = tk.Canvas(root, height = '1080', width = '1920')
 Canvas.pack()
@@ -19,9 +26,10 @@ WeatherButton = tk.Button(root, text = "Display Weather", command = DisplayWeath
 WeatherButton.pack()
 WeatherButton.place(relx = '0.45', rely = '0.8', height = '55', width = '125')
 
-city = input("City: ")
+city = getLocation()
 request_url = 'http://api.openweathermap.org/data/2.5/weather?appid=a82ce5d667628af3985ec52d8a1a91eb&q={}'.format(city)
 # This is the link that has two attributes: Your api id and the location request
+
 # Displays the json weather data in form of an integer
 return_data = requests.get(request_url).json()
 relevant_data = return_data['main']
