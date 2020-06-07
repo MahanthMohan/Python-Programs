@@ -6,13 +6,13 @@ root = tk.Tk()
 # A method that places the labels onto the canvas
 def DisplayWeather():
     CL.place(x = '600', y = '125')
-    WL1.place(x = '600', y = '210')
-    WL2.place(x = '600', y = '285')
-    WL3.place(x = '600', y = '360')
+    WL1.place(x = '600', y = '160')
+    WL2.place(x = '600', y = '245')
 
 # A method that collects the user location from the GUI
 def getLocation():
-   tk.Label(root, text="City").grid(row = 0)
+   City = tk.Label(root, text="City")
+   City.place(x = '600', y = '90')
    e = tk.Entry(root)
    location = str(e.get())
    return location
@@ -32,15 +32,14 @@ request_url = 'http://api.openweathermap.org/data/2.5/weather?appid=a82ce5d66762
 
 # Displays the json weather data in form of an integer
 return_data = requests.get(request_url).json()
-relevant_data = return_data['main']
-Current_temp = 'The Current temperature is ' + str(int((relevant_data['temp']) - 273)) + " degrees Celsius"
-Maximum_temp = 'The Maximum temperature is ' + str(int(relevant_data['temp_max'] - 273)) + " degrees Celsius"
-Minimum_temp = 'The Minimum temperature is ' + str(int(relevant_data['temp_min'] - 273)) + " degrees Celsius"
+temp_data = return_data['main']['temp']
+weather_data = return_data['weather']['description']
+Current_temp = 'The Current temperature is ' + str(int(temp_data - 273)) + " degrees Celsius"
+
 
 CL = tk.Label(root, text = "Today's weather for the city of {}: ".format(city))
 WL1 = tk.Label(root, text = Current_temp)
-WL2 = tk.Label(root, text = Maximum_temp)
-WL3 = tk.Label(root, text = Minimum_temp)
+WL2 = tk.Label(root, text = temp_data)
 # Labels that display the parsed json text
 
 tk.mainloop()
