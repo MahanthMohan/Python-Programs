@@ -33,13 +33,13 @@ request_url = 'http://api.openweathermap.org/data/2.5/weather?appid=a82ce5d66762
 # Displays the json weather data in form of an integer
 return_data = requests.get(request_url).json()
 temp_data = return_data['main']['temp']
-weather_data = return_data['weather']['description']
+weather_data = return_data['weather']
 Current_temp = 'The Current temperature is ' + str(int(temp_data - 273)) + " degrees Celsius"
-
 
 CL = tk.Label(root, text = "Today's weather for the city of {}: ".format(city))
 WL1 = tk.Label(root, text = Current_temp)
 WL2 = tk.Label(root, text = temp_data)
+WL3 = tk.Label(root, text = weather_data)
 # Labels that display the parsed json text
 
 tk.mainloop()
