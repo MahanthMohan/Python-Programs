@@ -5,26 +5,26 @@ root = tk.Tk()
 
 # A method that places the labels onto the canvas
 def DisplayWeather():
-    CL.place(x = '600', y = '125')
-    WL1.place(x = '600', y = '160')
-    WL2.place(x = '600', y = '245')
+    CL.place(x = '240', y = '125')
+    WL1.place(x = '240', y = '170')
+    WL2.place(x = '240', y = '205')
 
 # A method that collects the user location from the GUI
 def getLocation():
    City = tk.Label(root, text="City")
-   City.place(x = '600', y = '90')
+   City.place(x = '240', y = '90')
    e = tk.Entry(root)
    location = str(e.get())
    return location
 
 # Creates a canvas
-Canvas = tk.Canvas(root, height = '1080', width = '1920')
+Canvas = tk.Canvas(root, height = '270', width = '480')
 Canvas.pack()
 
 # A button to display weather, which is done by calling the command DisplayWeather
 WeatherButton = tk.Button(root, text = "Display Weather", command = DisplayWeather)
 WeatherButton.pack()
-WeatherButton.place(relx = '0.45', rely = '0.8', height = '55', width = '125')
+WeatherButton.place(x = '240', y = '255', height = '55', width = '125')
 
 city = getLocation()
 request_url = 'http://api.openweathermap.org/data/2.5/weather?appid=a82ce5d667628af3985ec52d8a1a91eb&q={}'.format(city)
