@@ -62,7 +62,11 @@ async def on_message(message):
             await message.channel.send("the author of this message is " + str(message.author))
 
     if message.content.find("$translate") != -1:
-            await message.channel.send(requests.get(f"https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20200510T203759Z.c32fdda6ccace388.761b8b4cbfa468781df5a3b117f3eccb0407f241&text={message.content.partition("$translate ")[2]}&lang=en&format=plain").json()['text'][0])
+            callPhrase = "$translate "
+            query = message.content.partition(callPhrase)[2]
+            request_URL = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20200510T203759Z.c32fdda6ccace388.761b8b4cbfa468781df5a3b117f3eccb0407f241&text={}&lang=en&format=plain".format(query)
+            translated_text = requests.get(request_URL).json()['text'][0]
+            await message.channel.send(translated_text)
 
     if message.content.find("$weather") != -1:
         relevant_data = requests.get(f'http://api.openweathermap.org/data/2.5/weather?appid=a82ce5d667628af3985ec52d8a1a91eb&q={message.content.partition("$weather ")[2]}').json()['main']
@@ -71,10 +75,10 @@ async def on_message(message):
         await message.channel.send('The Minimum temperature is ' + str(int(relevant_data['temp_min'] - 273)) + " degrees Celsius")
 
     if message.content.find("$purge") != -1:
-        await message.channel.purge(limit = int(str(message).content.split(" ")[1]), bulk = amount)
+        await message.channel.purge(limit = int(str(message).content.split(" ")[1]), bulk = int(str(message).content.split(" ")[1]))
 
     if message.content.find("$terminate") != -1:
             await message.channel.send("***The bot was terminated***")
             await bot.close() 
 
-bot.run('NzExOTg5MTYwNzkzMzQyMDI0.Xv6Ovw.O_NT_5mP8WecojoUEGZBLtHOvEI')
+bot.run('NzExOTg5MTYwNzkzMzQyMDI0.Xv-eDQ.ZLhULGWawqqM9-9lhpMnqxqM9j8')
