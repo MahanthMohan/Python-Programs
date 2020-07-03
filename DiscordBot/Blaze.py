@@ -75,10 +75,10 @@ async def on_message(message):
         await message.channel.send('The Minimum temperature is ' + str(int(relevant_data['temp_min'] - 273)) + " degrees Celsius")
 
     if message.content.find("$purge") != -1:
-        await message.channel.purge(limit = int(str(message).content.split(" ")[1]), bulk = int(str(message).content.split(" ")[1]))
+        await message.channel.purge(limit = int(str(message.content).split(" ")[1]), bulk = int(str(message.content).split(" ")[1]))
 
     if message.content.find("$terminate") != -1:
             await message.channel.send("***The bot was terminated***")
             await bot.close() 
 
-bot.run('NzExOTg5MTYwNzkzMzQyMDI0.Xv-eDQ.ZLhULGWawqqM9-9lhpMnqxqM9j8')
+bot.run('NzExOTg5MTYwNzkzMzQyMDI0.Xv-98A.47asS9e840spqVynE3ak0Q04GTo')
