@@ -105,7 +105,7 @@ async def on_message(message):
         content = str(message.content)
         content_list = content.split(" ")
         amount = int(content_list[1])
-        await message.channel.purge(limit = amount, bulk = amount)
+        await message.channel.purge(limit = amount + 1, bulk = amount + 1)
 
     if message.content.find("$terminate") != -1:
             await message.channel.send("***The bot was terminated***")
